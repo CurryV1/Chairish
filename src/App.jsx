@@ -1,35 +1,52 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+// src/App.jsx
+import React, { Suspense, lazy } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
+import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import CategoryCards from "./components/CategoryCards";
 import Footer from "./components/Footer";
-import FAQ from "./components/FAQ";
-import Home from "./pages/Home";
-import FAQPage from "./pages/FAQ";
-import LivingRoom from "./pages/LivingRoom";
-import Office from "./pages/Office";
-import Bedroom from "./pages/Bedroom";
-import ContactUs from "./pages/ContactUs";
-import Account from "./pages/Account";
-import Cart from "./pages/Cart";
 
-{/*Components have functionality, pages call components, App organizes*/}
+// Lazy load page components
+const Home = lazy(() => import("./pages/Home"));
+const LivingRoom = lazy(() => import("./pages/LivingRoom"));
+const Office = lazy(() => import("./pages/Office"));
+const Bedroom = lazy(() => import("./pages/Bedroom"));
+const FAQPage = lazy(() => import("./pages/FAQ"));
+const ContactUs = lazy(() => import("./pages/ContactUs"));
+const Account = lazy(() => import("./pages/Account"));
+const Cart = lazy(() => import("./pages/Cart"));
+
 const App = () => {
+  const location = useLocation();
   return (
-    <div>
-        <Navbar />
-        <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/faq" element={<FAQPage />} />
-        <Route path="/livingroom" element={<LivingRoom />} />
-        <Route path="/office" element={<Office />} />
-        <Route path="/bedroom" element={<Bedroom />} />
-        <Route path="/contactus" element={<ContactUs />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/cart" element={<Cart />} />
-        {/* Add more routes here if needed */}
-        </Routes>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <main className="flex-grow">
+        <AnimatePresence exitBeforeEnter>
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Suspense
+              fallback={<div className="container mx-auto p-4">Loading...</div>}
+            >
+              <Routes location={location}>
+                <Route path="/" element={<Home />} />
+                <Route path="/livingroom" element={<LivingRoom />} />
+                <Route path="/office" element={<Office />} />
+                <Route path="/bedroom" element={<Bedroom />} />
+                <Route path="/faq" element={<FAQPage />} />
+                <Route path="/contactus" element={<ContactUs />} />
+                <Route path="/account" element={<Account />} />
+                <Route path="/cart" element={<Cart />} />
+              </Routes>
+            </Suspense>
+          </motion.div>
+        </AnimatePresence>
+      </main>
       <Footer />
     </div>
   );

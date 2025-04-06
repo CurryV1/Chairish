@@ -1,62 +1,51 @@
 name,description,price,material,color,tags,category,image_ref
-Claremont Heights Sofa, A stylish modern take on a classic design., 349.99, microfiber, light blue, "couch, 3 seats, modern", living room, /images/Claremont.png
-Folsom Street Sofa, Classic black leather on an updated two-seat sofa., 299.99, leather, black, "couch, sofa, 2 seats, modern", living room, /images/Folsom.png
-Hayward Sofa, The standard two-seat sofa in a neutral colorway., 199.99, linen, grey, "couch, neutral, 2 seats", living room, /images/Hayward.png
-Delcrest Sofa, Light neutral colors on a classic three-seat sofa, 249.99, linen, tan, "couch, neutral, 3 seats", living room, /images/Delcrest.png
-Athens Sofa, Dark blue tones on a classic design, 279.99, microfiber, blue, "couch, dark", living room, /images/Athens.png
-Altari Sofa, Beautiful black linen meets a classic two-seat sofa, 219.99, linen, black, "couch, dark, 2 seats", living room, /images/Altari.png
-Mahoney Sofa, Simple two-seat sofa perfect for any room, 189.99, microfiber, grey, "couch, neutral, 2 seats", living room, /images/Mahoney.png
-Darcy Sofa, Modern sofa with a style that's sure to make a statement, 429.99, microfiber, grey, "couch, neutral, 3 seats", living room, /images/Darcy.png
-Bladen Sofa, Rustic brown sofa sure to make a great addition to your space, 399.99, leather, brown, "couch, rustic, 3 seats", living room, /images/Bladen.png
-Newton Sofa, A unique modern sofa perfect for elevating your living space style, 319.99, linen, brown, "couch, modern, 2 seats", living room, /images/Newton.png
-Tartonelle Accent Chair, White linen chair of classic design, 169.99, linen, white, "chair, office", living room, /images/Tartonelle.png
-Puckman Leather Accent Chair, Sleek brown leather chair on a metal frame, 159.99, leather, brown, "chair, living room", office, /images/Puckman.png
-Kambria Swivel Glider Accent Chair, Striped linen swivel chair, 179.99, linen, white, "chair, office", living room, /images/Kambria.png
-Drakelle Accent Chair, Faux-distressed leather seat in rustic brown, 199.99, leather, brown, "chair, living room", office, /images/Drakelle.png
-Sidewinder Accent Chair, Modern style brown leather seat, 169.99, leather, brown, "chair, living room", office, /images/Sidewinder.png
-Bradney Swivel Chair, Classic grey linen swivel chair, 159.99, linen, grey, "chair, living room", office, /images/Bradney.png
-Peacemaker Accent Chair, Light brown leather accent seat on a metal frame, 149.99, leather, brown, "chair, living room", office, /images/Peacemaker.png
-Search Swivel Accent Chair, White linen swivel chair in a classic style, 169.99, linen, white, "chair, office", living room, /images/Search.png
-Iceman Swivel Chair, Dark blue corduroy swivel chair, 189.99, corduroy, blue, "chair, living room", office, /images/Iceman.png
-Tilden Accent Chair, White linen seat with wooden accents, 154.99, linen, white, "chair, living room", office, /images/Tilden.png
-GhostPillow Memory Foam Pillow, High quality memory foam pillow, 29.99, foam, white, "pillow", bedroom, /images/GhostPillow.png
-Healthy Sleep Pillow, Quilted cotton cooling pillow, 34.99, foam, grey, "pillow, cooling", bedroom, /images/Healthy.png
-Chime 10 Inch Medium Hybrid Twin Mattress, Memory foam twin mattress for great comfort, 189.99, foam, white, "bed, mattress", bedroom, /images/Chime.png
-Chime 12 Inch Plush Hybrid Twin Mattress, Large memory foam twin mattress for great comfort, 219.99, foam, white, "bed, mattress", bedroom, /images/Chime2.png
-iKidz Coral Twin Mattress and Pillow, Kids twin mattress and pillow in a vibrant coral color, 164.99, foam, coral, "bed, mattress, kids", bedroom, /images/iKidz.png
-Sealy Princeton Soft Euro Pillowtop Twin Mattress, Luxury black foam mattress, 259.99, foam, black, "bed, mattress", bedroom, /images/Sealy.png
-Nectar Premier Memory Foam Twin Mattress, Two tone memory foam twin mattress, 219.99, foam, white, "bed, mattress", bedroom, /images/Nectar.png
-Sealy Atwater Village Hybrid Firm Twin XL Mattress, High quality twin XL foam mattress, 279.99, foam, white, "bed, mattress", bedroom, /images/Sealy2.png
-Serta Perfect Sleeper Best Day 12 Inch Firm Twin XL Mattress, Two tone foam twin XL mattress, 249.99, foam, blue, "bed, mattress", bedroom, /images/Serta.png
-Sealy Posturepedic Beauclair Medium Pillowtop Twin XL Mattress, Twin XL mattress with posture health in mind, 314.99, foam, white, "bed, mattress", bedroom, /images/Sealy3.png
-Beautyrest World Class Level Three Medium Firm 14.5 in. Twin XL Mattress, World class comfort in a twin XL mattress, 359.99, foam, black, "bed, mattress", bedroom, /images/Beautyrest.png
-Chime 10 Inch Firm Memory Foam Full Mattress, Quilted firm memory foam full mattress, 369.99, foam, white, "bed, mattress", bedroom, /images/Chime3.png
-Beautyrest Dresden Plush Full Mattress, Plush full mattress, 289.99, foam, white, "bed, matteress", bedroom, /images/Beautyrest2.png
-Serta Perfect Sleeper Astounding Night 10.5 Inch Plush Full Mattress, Two tone plush full mattress, 259.99, foam, white, "bed, mattress", bedroom, /images/Serta2.png
-Roanhowe 68 Inch Home Office Desk, Wooden home office desk, 329.99, wood, brown, "wood", office, /images/Roanhowe.png
-Montia 67 Inch Home Office Desk, Wooden home office desk on a metal frame, 189.99, wood, brown, "wood", office, /images/Montia.png
-Korestone 63 Inch Home Office Desk, Unique paneled wood office desk, 229.99, wood, brown, "wood", office, /images/Korestone.png
-Austanny 67 Inch Home Office Desk, Modern design wooden office desk, 219.99, wood, brown, "wood", office, /images/Austanny.png
-Rowanbeck 60 Inch Home Office Desk, Modern design black wooden office desk, 249.99, wood, black, "wood", office, /images/Rowanbeck.png
-Shawburn 54 Inch Home Office Desk, Minimalist wood desktop on a grey frame, 129.99, wood, grey, "wood", office, /images/Shawburn.png
-Austanny Home Office Desk Chair, Brown velvet office desk chair, 149.99, velvet, brown, "chair, rolling", office, /images/Austanny2.png
-Montia Home Office Desk Chair, White linen desk chair on a metal frame, 114.99, linen, white, "chair", office, /images/Montia2.png
-Korestone Home Office Desk Chair, White leather modern office chair, 234.99, leather, white, "chair", office, /images/Korestone2.png
-Rowanbeck Home Office Desk Chair, Modern black frame with a plush linen seat, 119.99, wood, black, "chair", office, /images/Rowanbeck2.png
-Swivel Home Office Desk Chair with Bucket Seat, Armless black leather swivel seat, 129.99, leather, black, "chair, rolling, swivel", office, /images/Swivel.png
-Reed Office Chair, Mimnimal wood design rolling office chair, 159.99,  wood, brown, "chair, rolling", office, /images/Reed.png
-Realyn 75 Inch Bookcase with 3 Shelves, Four level wooden bookcase, 229.99, wood, white, "shelf, living room, bedroom", office, images/Realyn.png
-Roanhowe 71 Inch Bookcase, Five level wooden bookcase, 249.99, wood, brown, "shelf, living room, bedroom", office, images/Roanhowe2.png
-Galtbury 72 Inch Bookcase, Five level wooden bookcase on a metal frame, 214.99, wood, brown, "shelf, metal, black, living room, bedroom", office, /images/Galtbury.png
-Frankwell 70 Inch Bookcase, 5 level wooden alternating bookcase on a metal frame, 279.99, wood, brown, "shelf, black, metal, living room, bedroom", office, /images/Frankwell.png
-
-
-
-
-
-
-
-
-
-
-
+"Claremont Heights Sofa","A stylish modern take on a classic design",349.99,"microfiber","light blue","couch,3 seats,modern","living room","/images/Claremont.png"
+"Folsom Street Sofa","Classic black leather on an updated two-seat sofa",299.99,"leather","black","couch, sofa, 2 seats, modern","living room","/images/Folsom.png"
+"Hayward Sofa","The standard two-seat sofa in a neutral colorway",199.99,"linen","grey","couch, neutral, 2 seats","living room","/images/Hayward.png"
+"Delcrest Sofa","Light neutral colors on a classic three-seat sofa",249.99,"linen","tan","couch, neutral, 3 seats","living room","/images/Delcrest.png"
+"Athens Sofa","Dark blue tones on a classic design",279.99,"microfiber","blue","couch, dark","living room","/images/Athens.png"
+"Altari Sofa","Beautiful black linen meets a classic two-seat sofa",219.99,"linen","black","couch, dark, 2 seats","living room","/images/Altari.png"
+"Mahoney Sofa","Simple two-seat sofa perfect for any room",189.99,"microfiber","grey","couch, neutral, 2 seats","living room","/images/Mahoney.png"
+"Darcy Sofa","Modern sofa with a style that's sure to make a statement",429.99,"microfiber","grey","couch, neutral, 3 seats","living room","/images/Darcy.png"
+"Bladen Sofa","Rustic brown sofa sure to make a great addition to your space",399.99,"leather","brown","couch, rustic, 3 seats","living room","/images/Bladen.png"
+"Newton Sofa","A unique modern sofa perfect for elevating your living space style",319.99,"linen","brown","couch, modern, 2 seats","living room","/images/Newton.png"
+"Tartonelle Accent Chair","White linen chair of classic design",169.99,"linen","white","chair, office","living room","/images/Tartonelle.png"
+"Puckman Leather Accent Chair","Sleek brown leather chair on a metal frame",159.99,"leather","brown","chair, living room","office","/images/Puckman.png"
+"Kambria Swivel Glider Accent Chair","Striped linen swivel chair",179.99,"linen","white","chair, office","living room","/images/Kambria.png"
+"Drakelle Accent Chair","Faux-distressed leather seat in rustic brown",199.99,"leather","brown","chair, living room","office","/images/Drakelle.png"
+"Sidewinder Accent Chair","Modern style brown leather seat",169.99,"leather","brown","chair, living room","office","/images/Sidewinder.png"
+"Bradney Swivel Chair","Classic grey linen swivel chair",159.99,"linen","grey","chair, living room","office","/images/Bradney.png"
+"Peacemaker Accent Chair","Light brown leather accent seat on a metal frame",149.99,"leather","brown","chair, living room","office","/images/Peacemaker.png"
+"Search Swivel Accent Chair","White linen swivel chair in a classic style",169.99,"linen","white","chair, office","living room","/images/Search.png"
+"Iceman Swivel Chair","Dark blue corduroy swivel chair",189.99,"corduroy","blue","chair, living room","office","/images/Iceman.png"
+"Tilden Accent Chair","White linen seat with wooden accents",154.99,"linen","white","chair, living room","office","/images/Tilden.png"
+"GhostPillow Memory Foam Pillow","High quality memory foam pillow",29.99,"foam","white","pillow","bedroom","/images/GhostPillow.png"
+"Healthy Sleep Pillow","Quilted cotton cooling pillow",34.99,"foam","grey","pillow, cooling","bedroom","/images/Healthy.png"
+"Chime 10 Inch Medium Hybrid Twin Mattress","Memory foam twin mattress for great comfort",189.99,"foam","white","bed, mattress","bedroom","/images/Chime.png"
+"Chime 12 Inch Plush Hybrid Twin Mattress","Large memory foam twin mattress for great comfort",219.99,"foam","white","bed, mattress","bedroom","/images/Chime2.png"
+"iKidz Coral Twin Mattress and Pillow","Kids twin mattress and pillow in a vibrant coral color",164.99,"foam","coral","bed, mattress, kids","bedroom","/images/iKidz.png"
+"Sealy Princeton Soft Euro Pillowtop Twin Mattress","Luxury black foam mattress",259.99,"foam","black","bed, mattress","bedroom","/images/Sealy.png"
+"Nectar Premier Memory Foam Twin Mattress","Two tone memory foam twin mattress",219.99,"foam","white","bed, mattress","bedroom","/images/Nectar.png"
+"Sealy Atwater Village Hybrid Firm Twin XL Mattress","High quality twin XL foam mattress",279.99,"foam","white","bed, mattress","bedroom","/images/Sealy2.png"
+"Serta Perfect Sleeper Best Day 12 Inch Firm Twin XL Mattress","Two tone foam twin XL mattress",249.99,"foam","blue","bed, mattress","bedroom","/images/Serta.png"
+"Sealy Posturepedic Beauclair Medium Pillowtop Twin XL Mattress","Twin XL mattress with posture health in mind",314.99,"foam","white","bed, mattress","bedroom","/images/Sealy3.png"
+"Beautyrest World Class Level Three Medium Firm 14.5 in. Twin XL Mattress","World class comfort in a twin XL mattress",359.99,"foam","black","bed, mattress","bedroom","/images/Beautyrest.png"
+"Chime 10 Inch Firm Memory Foam Full Mattress","Quilted firm memory foam full mattress",369.99,"foam","white","bed, mattress","bedroom","/images/Chime3.png"
+"Beautyrest Dresden Plush Full Mattress","Plush full mattress",289.99,"foam","white","bed, matteress","bedroom","/images/Beautyrest2.png"
+"Serta Perfect Sleeper Astounding Night 10.5 Inch Plush Full Mattress","Two tone plush full mattress",259.99,"foam","white","bed, mattress","bedroom","/images/Serta2.png"
+"Roanhowe 68 Inch Home Office Desk","Wooden home office desk",329.99,"wood","brown","wood","office","/images/Roanhowe.png"
+"Montia 67 Inch Home Office Desk","Wooden home office desk on a metal frame",189.99,"wood","brown","wood","office","/images/Montia.png"
+"Korestone 63 Inch Home Office Desk","Unique paneled wood office desk",229.99,"wood","brown","wood","office","/images/Korestone.png"
+"Austanny 67 Inch Home Office Desk","Modern design wooden office desk",219.99,"wood","brown","wood","office","/images/Austanny.png"
+"Rowanbeck 60 Inch Home Office Desk","Modern design black wooden office desk",249.99,"wood","black","wood","office","/images/Rowanbeck.png"
+"Shawburn 54 Inch Home Office Desk","Minimalist wood desktop on a grey frame",129.99,"wood","grey","wood","office","/images/Shawburn.png"
+"Austanny Home Office Desk Chair","Brown velvet office desk chair",149.99,"velvet","brown","chair, rolling","office","/images/Austanny2.png"
+"Montia Home Office Desk Chair","White linen desk chair on a metal frame",114.99,"linen","white","chair","office","/images/Montia2.png"
+"Korestone Home Office Desk Chair","White leather modern office chair",234.99,"leather","white","chair","office","/images/Korestone2.png"
+"Rowanbeck Home Office Desk Chair","Modern black frame with a plush linen seat",119.99,"wood","black","chair","office","/images/Rowanbeck2.png"
+"Swivel Home Office Desk Chair with Bucket Seat","Armless black leather swivel seat",129.99,"leather","black","chair, rolling, swivel","office","/images/Swivel.png"
+"Reed Office Chair","Mimnimal wood design rolling office chair",159.99,"wood","brown","chair, rolling","office","/images/Reed.png"
+"Realyn 75 Inch Bookcase with 3 Shelves","Four level wooden bookcase",229.99,"wood","white","shelf, living room, bedroom","office","images/Realyn.png"
+"Roanhowe 71 Inch Bookcase","Five level wooden bookcase",249.99,"wood","brown","shelf, living room, bedroom","office","images/Roanhowe2.png"
+"Galtbury 72 Inch Bookcase","Five level wooden bookcase on a metal frame",214.99,"wood","brown","shelf, metal, black, living room, bedroom","office","/images/Galtbury.png"
+"Frankwell 70 Inch Bookcase","5 level wooden alternating bookcase on a metal frame",279.99,"wood","brown","shelf, black, metal, living room, bedroom","office","/images/Frankwell.png"

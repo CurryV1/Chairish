@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -9,19 +10,19 @@ const Navbar = () => {
 
         {/* Center Section - Primary Navigation */}
         <nav className="flex space-x-6">
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          <Link to="/" className="text-gray-600 hover:text-gray-900">
             Home
-          </a>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          </Link>
+          <Link to="/livingroom" href="#" className="text-gray-600 hover:text-gray-900">
             Living Room
-          </a>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          </Link>
+          <Link to="/office" className="text-gray-600 hover:text-gray-900">
             Office
-          </a>
+          </Link>
 
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          <Link to="/bedroom" className="text-gray-600 hover:text-gray-900">
             Bedroom
-          </a>
+          </Link>
         </nav>
 
         {/* Right Section - Secondary Navigation */}
@@ -31,18 +32,18 @@ const Navbar = () => {
             placeholder="Search"
             className="border border-gray-300 rounded py-1 px-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          <Link to="/contactus" className="text-gray-600 hover:text-gray-900">
             About Us
-          </a>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          </Link>
+          <Link to="/faq" className="text-gray-600 hover:text-gray-900">
             FAQ
-          </a>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          </Link>
+          <Link to="/account" className="text-gray-600 hover:text-gray-900">
             Account
-          </a>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
+          </Link>
+          <Link to="/cart" className="text-gray-600 hover:text-gray-900">
             Cart
-          </a>
+          </Link>
         </div>
       </div>
     </header>

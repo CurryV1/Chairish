@@ -1,9 +1,10 @@
+// src/components/Footer.jsx
 import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-4">
-      <div className="container mx-auto text-center">@UTSA 2025</div>
+    <footer className="bg-gray-200 p-4 text-center">
+      <p className="text-black">&copy;UTSA 2025. All rights reserved.</p>
     </footer>
   );
 };

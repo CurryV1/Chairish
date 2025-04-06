@@ -24,9 +24,32 @@ const db = new sqlite.Database("./ecommerce.db", (err) => {
 // Define your endpoint
 app.get("/api/products", (req, res) => {
   const category = req.query.category;
-  console.log("Querying category:", category);
-  const sql = `SELECT id, name, description, price, image_ref FROM products WHERE LOWER(category) = LOWER(?)`;
-  db.all(sql, [category.trim()], (err, rows) => {
+  const search = req.query.search;
+  let sql = "SELECT id, name, description, price, image_ref FROM products";
+  let params = [];
+
+  if (category && search) {
+    sql +=
+      " WHERE LOWER(category) = LOWER(?) AND (LOWER(name) LIKE ? OR LOWER(description) LIKE ?)";
+    params.push(
+      category.trim(),
+      `%${search.trim().toLowerCase()}%`,
+      `%${search.trim().toLowerCase()}%`
+    );
+  } else if (category) {
+    sql += " WHERE LOWER(category) = LOWER(?)";
+    params.push(category.trim());
+  } else if (search) {
+    sql += " WHERE LOWER(name) LIKE ? OR LOWER(description) LIKE ?";
+    params.push(
+      `%${search.trim().toLowerCase()}%`,
+      `%${search.trim().toLowerCase()}%`
+    );
+  }
+
+  console.log("SQL:", sql, params);
+
+  db.all(sql, params, (err, rows) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;

@@ -6,7 +6,10 @@ Running the Project Locally:
 
 2. Navigate to the Project Directory: cd <PROJECT_DIRECTORY>
 
-3. Install Dependencies Install all necessary dependencies (including Vite and
-   Tailwind) using npm: npm install
+3. Install all necessary dependencies (including Vite and Tailwind) using npm:
+   npm install
 
-4. Run the Development Server Start the development server with: npm run dev
+4. Run the back-end server to access products in database (in a separate
+   terminal window, from root project directory): node server.js
+
+5. Start the development server with: npm run dev

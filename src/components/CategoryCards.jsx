@@ -55,7 +55,7 @@ const CategoryCard = ({ category, link }) => {
 
 const CategoryCards = () => {
   const categories = [
-    { name: "Living Room", link: "/living-room" },
+    { name: "Living Room", link: "/livingroom" },
     { name: "Office", link: "/office" },
     { name: "Bedroom", link: "/bedroom" },
   ];

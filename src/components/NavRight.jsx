@@ -36,7 +36,7 @@ const NavRight = () => {
       </div>
       {/* Secondary Links */}
       <div className="flex items-center space-x-4">
-        <Link to="/about" className="text-black text-lg mr-12">
+        <Link to="/contactus" className="text-black text-lg mr-12">
           About Us
         </Link>
         <Link to="/faq" className="text-black text-lg mr-12">

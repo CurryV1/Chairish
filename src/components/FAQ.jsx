@@ -31,6 +31,7 @@ const FAQ = () => {
           <div className="border rounded-md">
             <FAQItem question="How do I create an account?" answer="Please use the account tab located in the top right corner of the screen." />
             <FAQItem question="What are the requirements for the account password?" answer="The password must be at least 8 charaters long." />
+            <FAQItem question="How do I log into my account?" answer="Please use the account tab located in the top right corner of the screen." />
           </div>
         </section>
   

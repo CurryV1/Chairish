@@ -3,7 +3,7 @@ import React from "react";
 
 const ProductListItemTwoColumn = ({ product }) => {
   return (
-    <div className="bg-white rounded-md border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 p-4">
+    <div tabIndex="0" className="bg-white rounded-md border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 p-4">
       <div className="grid grid-cols-2 gap-4">
         {/* Image Column with a fixed aspect ratio */}
         <div className="overflow-hidden">

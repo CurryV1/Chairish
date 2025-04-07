@@ -3,7 +3,7 @@ import React from "react";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="bg-white rounded-md border border-gray-200 shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+    <div tabIndex="0" className="bg-white rounded-md border border-gray-200 shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
       {/* Image Section */}
       <div className="w-full mb-4">
         <div className="aspect-w-4 aspect-h-3 w-full overflow-hidden">

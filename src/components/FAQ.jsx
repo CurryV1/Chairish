@@ -4,15 +4,18 @@ import { Link } from "react-router-dom";
 
 const FAQ = () => {
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <main className="max-w-4xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Frequently Asked Questions</h1>
 
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-2">General</h2>
+      {/* General Section */}
+      <section className="mb-8"  aria-labelledby="faq-general">
+        <h2 id="faq-general" className="text-2xl font-semibold mb-2">
+          General
+        </h2>
         <div className="border rounded-md">
           <FAQItem
             question="Do we have international Shipping?"
-            answer="No, our furniture store does not currently offer international shipping"
+            answer="No, our furniture store does not currently offer international shipping."
           />
           <FAQItem
             question="Do you offer replacement parts?"
@@ -29,8 +32,11 @@ const FAQ = () => {
         </div>
       </section>
 
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-2">Purchases</h2>
+      {/* Purchases Section */}
+      <section className="mb-8"  aria-labelledby="faq-purchases">
+        <h2 id="faq-purchases" className="text-2xl font-semibold mb-2">
+          Purchases
+        </h2>
         <div className="border rounded-md">
           <FAQItem
             question="What delivery methods do you offer?"
@@ -42,13 +48,16 @@ const FAQ = () => {
           />
           <FAQItem
             question="Is it safe to enter my credit card information on your site?"
-            answer="Yes, it is completely safe to enter your credit card information. (In reality this is a school project do not enter real credit/debit card information)"
+            answer="Yes, it is completely safe to enter your credit card information. (In reality this is a school project — do not enter real credit/debit card information.)"
           />
         </div>
       </section>
 
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-2">Account</h2>
+      {/* Account Section */}
+      <section className="mb-8"  aria-labelledby="faq-account">
+        <h2 id="faq-account" className="text-2xl font-semibold mb-2">
+          Account
+        </h2>
         <div className="border rounded-md">
           <FAQItem
             question="How do I create an account?"
@@ -56,7 +65,7 @@ const FAQ = () => {
           />
           <FAQItem
             question="What are the requirements for the account password?"
-            answer="The password must be at least 8 charaters long."
+            answer="The password must be at least 8 characters long."
           />
           <FAQItem
             question="How do I log into my account?"
@@ -65,14 +74,16 @@ const FAQ = () => {
         </div>
       </section>
 
+      {/* Contact Link */}
       <p className="mt-8 text-center text-gray-700">
         More Questions? Reach out to us on our{" "}
         <Link to="/contactus" className="text-blue-600 underline">
           Contact Us Page
         </Link>
       </p>
-    </div>
+    </main>
   );
 };
 
 export default FAQ;
+

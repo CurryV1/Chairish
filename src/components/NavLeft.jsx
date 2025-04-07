@@ -8,7 +8,7 @@ const NavLeft = () => {
       {/* Title remains unchanged */}
       <div className="flex-shrink-0">
         <Link to="/" className="text-black font-bold text-xl">
-          SiteName
+          Chairish
         </Link>
       </div>
       {/* Category Links container shifted right by 175px using inline style */}

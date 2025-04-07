@@ -1,22 +1,34 @@
+// src/components/Hero.jsx
 import React from "react";
 
 const Hero = () => {
+  const scrollToCategories = () => {
+    const categoriesSection = document.getElementById("categories");
+    if (categoriesSection) {
+      categoriesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="flex-1 flex flex-col justify-center items-center bg-gray-100">
-      <div className="text-center px-4">
-        <h1 className="text-4xl md:text-6xl font-bold text-gray-800">
-          Heading Lorem ipsum dolor sit amet,
-        </h1>
-        <p className="mt-4 text-lg text-gray-600">
-          Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua.
-        </p>
-        <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
-          Call to Action
+    <div
+      className="relative h-screen bg-cover bg-center"
+      style={{ backgroundImage: "url('/images/Hero.jpg')" }}
+    >
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black opacity-40"></div>
+
+      {/* Hero Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
+        <h1 className="text-5xl font-bold mb-4">Welcome to Chairish</h1>
+        <p className="text-xl mb-8">Your home deserves meaningful furniture</p>
+        <button
+          onClick={scrollToCategories}
+          className="bg-yellow-500 hover:bg-green-600 text-black font-bold py-3 px-6 rounded"
+        >
+          Start browsing
         </button>
       </div>
-      {/* Optionally, you can add an image or additional elements here */}
-    </section>
+    </div>
   );
 };
 

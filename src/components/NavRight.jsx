@@ -28,7 +28,7 @@ const NavRight = () => {
           />
           <button
             type="submit"
-            className="bg-blue-500 text-white rounded-r px-4 py-1 hover:bg-blue-600"
+            className="bg-yellow-500 text-white rounded-r px-4 py-1 hover:bg-green-600"
           >
             Search
           </button>
@@ -36,8 +36,11 @@ const NavRight = () => {
       </div>
       {/* Secondary Links */}
       <div className="flex items-center space-x-4">
-        <Link to="/contactus" className="text-black text-lg mr-12">
-          About Us
+        <Link
+          to="/contactus"
+          className="text-black text-lg mr-12 whitespace-nowrap"
+        >
+          Contact Us
         </Link>
         <Link to="/faq" className="text-black text-lg mr-12">
           FAQ

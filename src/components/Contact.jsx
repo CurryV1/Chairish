@@ -1,13 +1,18 @@
 import React from "react";
-import { FaFacebookF, FaInstagram, FaXTwitter, FaPinterestP } from "react-icons/fa6";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaXTwitter,
+  FaPinterestP,
+} from "react-icons/fa6";
 
 const Contact = () => {
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-5 p-6">
       <h1 className="text-3xl font-bold mb-8">Contact Us</h1>
 
       {/* Phone Section */}
-      <section className="mb-6">
+      <section className="mb-8">
         <h2 className="text-xl font-semibold mb-1">Phone Number</h2>
         <p className="text-gray-700">Customer Service Line: (210) 345-9832</p>
       </section>

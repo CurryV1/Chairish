@@ -1,76 +1,50 @@
-import React, { useState, useEffect, useRef } from "react";
+// src/components/CategoryCards.jsx
+import React from "react";
+import { Link } from "react-router-dom";
 
-const CategoryCard = ({ category, link }) => {
-  const cardRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-
-    return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
-    };
-  }, []);
-
-  return (
-    <a
-      href={link}
-      ref={cardRef}
-      className={`block bg-white shadow-lg rounded overflow-hidden transform transition duration-700 ease-in-out 
-                  ${
-                    isVisible
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-10"
-                  }`}
-    >
-      <div className="h-48 bg-gray-200 flex items-center justify-center">
-        {/* Placeholder for future image */}
-        <span className="text-gray-500">Image Placeholder</span>
-      </div>
-      <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2">{category}</h3>
-        <p className="text-gray-600">
-          Explore our {category.toLowerCase()} collection.
-        </p>
-      </div>
-    </a>
-  );
-};
+const categories = [
+  {
+    name: "Living Room",
+    path: "/livingroom",
+    image: "/images/livingroom.jpg", // Replace with your actual image path
+  },
+  {
+    name: "Office",
+    path: "/office",
+    image: "/images/office.jpg", // Replace with your actual image path
+  },
+  {
+    name: "Bedroom",
+    path: "/bedroom",
+    image: "/images/bedroom.jpg", // Replace with your actual image path
+  },
+];
 
 const CategoryCards = () => {
-  const categories = [
-    { name: "Living Room", link: "/livingroom" },
-    { name: "Office", link: "/office" },
-    { name: "Bedroom", link: "/bedroom" },
-  ];
-
   return (
-    <section className="py-12 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center">Categories</h2>
-        <div className="grid gap-8 grid-cols-1 md:grid-cols-3">
-          {categories.map((cat, index) => (
-            <CategoryCard key={index} category={cat.name} link={cat.link} />
-          ))}
-        </div>
-      </div>
-    </section>
+    <div
+      id="categories"
+      className="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-start"
+      // If you want them all to have the same card height, try: "items-stretch"
+      // className="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch"
+    >
+      {categories.map((cat) => (
+        <Link to={cat.path} key={cat.name} className="block">
+          <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col">
+            <div className="aspect-w-4 aspect-h-3 w-full">
+              <img
+                src={cat.image}
+                alt={cat.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="p-4">
+              <h2 className="text-xl font-bold text-center">{cat.name}</h2>
+            </div>
+          </div>
+        </Link>
+      ))}
+    </div>
   );
 };
 

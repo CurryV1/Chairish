@@ -22,7 +22,7 @@ const App = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow bg-yellow-500">
         <AnimatePresence exitBeforeEnter>
           <motion.div
             key={location.pathname}

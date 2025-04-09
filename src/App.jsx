@@ -16,6 +16,7 @@ const ContactUs = lazy(() => import("./pages/ContactUs"));
 const Account = lazy(() => import("./pages/Account"));
 const Cart = lazy(() => import("./pages/Cart"));
 const SearchPage = lazy(() => import("./pages/SearchPage"));
+const Register = lazy(() => import("./pages/Register"));
 
 const App = () => {
   const location = useLocation();
@@ -42,6 +43,7 @@ const App = () => {
                 <Route path="/faq" element={<FAQPage />} />
                 <Route path="/contactus" element={<ContactUs />} />
                 <Route path="/account" element={<Account />} />
+                <Route path = "/register" element={<Register />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/search" element={<SearchPage />} />
               </Routes>

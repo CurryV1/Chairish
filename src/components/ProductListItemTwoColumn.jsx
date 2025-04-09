@@ -1,5 +1,6 @@
 // src/components/ProductListItemTwoColumn.jsx
 import React from "react";
+import SendToCart from "./SendToCart";
 
 const ProductListItemTwoColumn = ({ product }) => {
   return (
@@ -20,6 +21,7 @@ const ProductListItemTwoColumn = ({ product }) => {
           <h2 className="text-lg font-semibold mb-1">{product.name}</h2>
           <p className="text-gray-600 text-sm mb-1">{product.description}</p>
           <p className="text-base font-bold">${product.price}</p>
+          <SendToCart product ={product} />
         </div>
       </div>
     </div>

@@ -87,7 +87,7 @@ const db = new sqlite.Database("./ecommerce.db", (err) => {
   }
 });
 
-// Updated API endpoint to include color and material fields
+// Updated API endpoint to include color, selected, and material fields
 app.get("/api/products", (req, res) => {
   const category = req.query.category;
   const search = req.query.search;
@@ -113,6 +113,18 @@ app.get("/api/products", (req, res) => {
       `%${search.trim().toLowerCase()}%`
     );
   }
+
+  app.post("/update-product", (req, res) => {
+    const { id, selected } = req.body; // Expect both 'id' and 'selected' to be in the body
+    const query = 'UPDATE products SET selected = ? WHERE id = ?';
+
+    db.run(query, [selected, id], function (err) {
+        if (err) {
+            return res.status(500).json({ error: "Failed to update product" });
+        }
+        res.status(200).json({ changes: this.changes });
+    });
+});
 
   db.all(sql, params, (err, rows) => {
     if (err) {

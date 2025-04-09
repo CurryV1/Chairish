@@ -1,5 +1,6 @@
 // src/components/ProductCard.jsx
 import React from "react";
+import SendToCart from "./SendToCart";
 
 const ProductCard = ({ product }) => {
   return (
@@ -19,6 +20,7 @@ const ProductCard = ({ product }) => {
         <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
         <p className="text-gray-600 mb-2">{product.description}</p>
         <p className="text-lg font-bold">${product.price}</p>
+        <SendToCart product ={product} />
       </div>
     </div>
   );

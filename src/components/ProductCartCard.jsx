@@ -1,5 +1,6 @@
 // src/components/ProductCartCard.jsx
 import React from "react";
+import RemoveFromCart from "./RemoveFromCart";
 
 const ProductCartCard = ({ product }) => {
   return (
@@ -18,7 +19,7 @@ const ProductCartCard = ({ product }) => {
           <h2 className="text-lg font-semibold mb-1">{product.name}</h2>
           <p className="text-gray-600 text-sm mb-1">{product.description}</p>
           <p className="text-base font-bold">${product.price}</p>
-          <a className="p-2 float-right gap-2 inline-flex justify-center" href="/cart">Remove Item</a>
+          <RemoveFromCart product={(product)} />
         </div>
       </div>
     </div>

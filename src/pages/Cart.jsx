@@ -1,3 +1,4 @@
+//src/pages/Cart.jsx
 import React, { useState, useEffect } from "react";
 import ProductCartCard from "../components/ProductCartCard";
 import OrderSummary from "../components/OrderSummary";
@@ -51,10 +52,10 @@ const Cart = () => {
             <hr className="p-2"></hr>
             <div className="p-10">
               <a className="float-left gap-2 inline-flex justify-center rounded-full px-4 py-2 font-semibold 
-              bg-blue-800 text-white hover:bg-blue-950 focus-visile:outline-2" 
+              bg-yellow-500 hover:bg-green-600 text-black focus-visile:outline-2" 
               href="/">Continue Shopping</a>
-              <a className="float-right gap-2 inline-flex justify-center rounded-full px-4 py-2 font-semibold 
-              bg-blue-800 text-white hover:bg-blue-950 focus-visile:outline-2" 
+              <a className="float-right gap-2 inline-flex justify-center rounded-full px-4 py-2 font-semibold
+              bg-yellow-500 hover:bg-green-600 text-black focus-visile:outline-2" 
               href="/checkout">Got to Checkout</a>
             </div>
           </div>

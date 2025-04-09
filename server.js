@@ -92,7 +92,7 @@ app.get("/api/products", (req, res) => {
   const category = req.query.category;
   const search = req.query.search;
   let sql =
-    "SELECT id, name, description, price, image_ref, color, material FROM products";
+    "SELECT id, name, description, price, image_ref, color, material, selected FROM products";
   let params = [];
 
   if (category && search) {

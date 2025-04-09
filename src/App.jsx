@@ -5,6 +5,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Checkout from "./pages/Checkout";
 
 // Lazy load page components
 const Home = lazy(() => import("./pages/Home"));
@@ -43,6 +44,7 @@ const App = () => {
                 <Route path="/contactus" element={<ContactUs />} />
                 <Route path="/account" element={<Account />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
                 <Route path="/search" element={<SearchPage />} />
               </Routes>
             </Suspense>

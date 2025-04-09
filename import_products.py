@@ -19,7 +19,8 @@ CREATE TABLE IF NOT EXISTS products (
     color TEXT,
     tags TEXT,
     category TEXT,
-    image_ref TEXT
+    image_ref TEXT,
+    selected BOOLEAN
 )
 ''')
 
@@ -28,8 +29,8 @@ with open('products.csv', 'r') as file:
     reader = csv.DictReader(file)
     for row in reader:
         cursor.execute('''
-            INSERT INTO products (name, description, price, material, color, tags, category, image_ref)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO products (name, description, price, material, color, tags, category, image_ref, selected)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             row['name'].strip(),
             row['description'].strip(),
@@ -38,7 +39,8 @@ with open('products.csv', 'r') as file:
             row['color'].strip(),
             row['tags'].strip(),
             row['category'].strip(),
-            row['image_ref'].strip()
+            row['image_ref'].strip(),
+            row['selected'].strip()
         ))
 
 # Commit changes and close the connection

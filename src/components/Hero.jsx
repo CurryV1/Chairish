@@ -13,6 +13,7 @@ const Hero = () => {
     <div
       className="relative h-screen bg-cover bg-center"
       style={{ backgroundImage: "url('/images/Hero.jpg')" }}
+      alt="Yellow chair in aesthetic living room"
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-40"></div>

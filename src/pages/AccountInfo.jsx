@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AccountInfo = ({ onLogout }) => {
+  const navigate = useNavigate();
   // Get user from localStorage if not passed as prop
   const [user, setUser] = useState(() => {
     const userData = localStorage.getItem('user');
@@ -11,6 +13,7 @@ const AccountInfo = ({ onLogout }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     if (onLogout) onLogout();
+    navigate('/account');
   };
 
   return (

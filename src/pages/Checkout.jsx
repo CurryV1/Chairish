@@ -4,6 +4,7 @@ import OrderSummary from "../components/OrderSummary";
 import { CartContext } from "../context/CartContext";
 import AddressForm from "../components/AddressForm";
 import PaymentForm from "../components/PaymentForm";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [loading, setLoading] = useState(true);
@@ -16,6 +17,7 @@ const Checkout = () => {
   const [paymentSubmitted, setPaymentSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [subTotal, setSubTotal] = useState(0);
+  const navigate = useNavigate();
 
   // Recompute subtotal when cartItems change
   useEffect(() => {
@@ -26,7 +28,16 @@ const Checkout = () => {
     setLoading(false);
     setSubTotal(totalSum);
   }, [cartItems]);
-  
+  const addressForm = useState({
+    firstName: "",
+    lastName: "",
+    street1: "",
+    street2: "",
+    apt: "",
+    city: "",
+    state: "",
+    zip: "",
+  });
   const [mailForm, setMailForm] = useState({
     firstName: "",
     lastName: "",
@@ -55,8 +66,11 @@ const Checkout = () => {
     expDate: "",
     csv: "",
   });
-  const clearForm = (formSetter) => {
-    formSetter(null);
+  const clearAddForm = (formSetter) => {
+    formSetter(addressForm);
+  };
+  const clearPayForm = (formSetter) => {
+    formSetter(paymentForm);
   };
   const handlePaymentSubmit = (e) => {
     e.preventDefault();
@@ -67,17 +81,19 @@ const Checkout = () => {
     }
     setErrorMessage("");
     setPaymentSubmitted(true);
-    clearForm(setSubmittedMailAddress);
-    clearForm(setSubmittedBillAddress);
-    clearForm(setSubmittedPayment);
+    clearAddForm(setSubmittedMailAddress);
+    clearAddForm(setSubmittedBillAddress);
+    clearPayForm(setSubmittedPayment);
     clearCart();
     setTimeout(() => {
         setPaymentSubmitted(false);
+        navigate("/");
     }, 3000);
   };
   const handleClose = (e) => {
     e.preventDefault();
     setPaymentSubmitted(false);
+    navigate("/");
   };
   const handleCheckboxChange = () => {
     setSameAsMailing(!sameAsMailing);

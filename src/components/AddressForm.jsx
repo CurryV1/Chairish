@@ -2,10 +2,10 @@
 import React from "react";
 
 const AddressForm = ({addForm, setAddForm, setSubmittedForm}) => {
-    const nameRegex = /^[A-Za-z'-]{3,}$/; // at least 3 letters, only letters, apostrophes, hyphens
+    const nameRegex = /^[A-Za-z'-]{2,}$/; // at least 3 letters, only letters, apostrophes, hyphens
     const streetRegex = /^\d+.*[A-Za-z]+.*/; // starts with numbers, contains at least one letter
     const cityRegex = /^[A-Za-z'-\s]+$/; // only letters, hyphens, apostrophes, and spaces
-    const zipRegex = /^\d{5}$/; // exactly 5 digits
+    const zipRegex = /^\d{5,}$/; // exactly 5 digits
     const usStates = [
         "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
         "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",

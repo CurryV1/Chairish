@@ -120,13 +120,12 @@ const Checkout = () => {
           <div className="grid col-span-2 row-span-3 grid-rows-3 gap-4 bg-yellow-500 h-200 border-amber-500">
             <div className="col-span-2 bg-white rounded-md border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow overflow-auto duration-300">
               <h3 className="p-2 text-2xl font-bold mb-4">Mailing Address</h3>
-              <br></br>
               <AddressForm addForm = {mailForm}  setAddForm = {setMailForm} setSubmittedForm = {setSubmittedMailAddress} />
 
             </div>
             
             <div className="col-span-2 bg-white rounded-md border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow overflow-auto duration-300">
-              <h3 className="p-2 text-2xl font-bold mb-4">Billing Address</h3>
+              <h3 className="pl-2 text-2xl font-bold mb-2">Billing Address</h3>
               <label className="ml-2"><input type="checkbox" className="outline-1" checked={sameAsMailing} onChange={handleCheckboxChange}></input> Same as Mailing Address</label>
               <AddressForm addForm = {billForm}  setAddForm = {setBillForm} setSubmittedForm = {setSubmittedBillAddress} />
             </div>
@@ -134,7 +133,7 @@ const Checkout = () => {
             <div className="col-span-2 bg-white rounded-md border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow overflow-auto duration-300">
               <h3 className="p-2 text-2xl font-bold mb-4">Payment Method</h3>
               <br></br>
-              <PaymentForm addForm = {paymentForm}  setAddForm = {setPaymentForm} setSubmittedForm = {setSubmittedPayment} />
+              <PaymentForm payForm = {paymentForm}  setPayForm = {setPaymentForm} setSubmittedForm = {setSubmittedPayment} />
             </div>
           </div>
 

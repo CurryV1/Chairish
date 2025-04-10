@@ -1,4 +1,18 @@
-const AccountInfo = ({ user, onLogout }) => {
+import React, { useState } from 'react';
+
+const AccountInfo = ({ onLogout }) => {
+  // Get user from localStorage if not passed as prop
+  const [user, setUser] = useState(() => {
+    const userData = localStorage.getItem('user');
+    return userData ? JSON.parse(userData) : null;
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    if (onLogout) onLogout();
+  };
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -33,7 +47,7 @@ const AccountInfo = ({ user, onLogout }) => {
 
           <div>
             <button
-              onClick={onLogout}
+              onClick={handleLogout}
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Logout

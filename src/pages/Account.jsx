@@ -25,12 +25,14 @@ const Account = ({ onLoginSuccess }) => {
       const data = await response.json();
       
       if (response.ok) {
-        // Check if onLoginSuccess exists before calling it
+        // Store the token and user data
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        
         if (typeof onLoginSuccess === 'function') {
           onLoginSuccess(data);
         } else {
           console.log('Login successful:', data);
-          // Navigate to a dashboard or home page after successful login
           navigate('/accountInfo');
         }
       } else {

@@ -8,6 +8,16 @@ const ProductCartCard = ({ product }) => {
 
   return (
     <div className="bg-white p-4 rounded shadow mb-4 flex items-center justify-between">
+      {/* Image Section */}
+      <div className="w-40">
+        <div className="aspect-w-4 aspect-h-3 overflow-hidden mr-3">
+          <img
+            src={product.image_ref}
+            alt={product.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
       <div className="flex-grow">
         <h2 className="text-xl font-bold">{product.name}</h2>
         <p className="text-gray-600">{product.description}</p>

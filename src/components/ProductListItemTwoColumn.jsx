@@ -1,8 +1,16 @@
 // src/components/ProductListItemTwoColumn.jsx
-import React from "react";
-import SendToCart from "./SendToCart";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
 const ProductListItemTwoColumn = ({ product }) => {
+  const { addToCart } = useContext(CartContext);
+
+  const handleAddToCart = () => {
+    // For the prototype, simply add the whole product object
+    addToCart(product);
+  };
+
   return (
     <div tabIndex="0" className="bg-white rounded-md border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 p-4">
       <div className="grid grid-cols-2 gap-4">
@@ -21,7 +29,23 @@ const ProductListItemTwoColumn = ({ product }) => {
           <h2 className="text-lg font-semibold mb-1">{product.name}</h2>
           <p className="text-gray-600 text-sm mb-1">{product.description}</p>
           <p className="text-base font-bold">${product.price}</p>
-          <SendToCart product ={product} />
+          {/* Buttons for Details and Add to Cart */}
+          <div className="flex space-x-2 mt-4">
+            {/* Details: Route to the product details screen */}
+            <Link
+              to={`/product/${product.id}`}
+              className="bg-yellow-500 hover:bg-amber-600 text-white px-3 py-1 rounded"
+            >
+              Details
+            </Link>
+            {/* Add to Cart button */}
+            <button
+              onClick={handleAddToCart}
+              className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
+            >
+              Add to Cart
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -3,11 +3,13 @@ import React, { useContext, useEffect, useState } from "react";
 import ProductCartCard from "../components/ProductCartCard";
 import OrderSummary from "../components/OrderSummary";
 import { CartContext } from "../context/CartContext";
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   // Get cart items from our CartContext
   const { cartItems } = useContext(CartContext);
   const [subTotal, setSubTotal] = useState(0);
+  const navigate = useNavigate();
 
   // Recompute subtotal when cartItems change
   useEffect(() => {

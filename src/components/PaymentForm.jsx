@@ -16,7 +16,6 @@ const PaymentForm = ({payForm, setPayForm, setSubmittedForm}) => {
             firstName,
             lastName,
             number,
-            expDate,
             csv
         } = payForm;
 

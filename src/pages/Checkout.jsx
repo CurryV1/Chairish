@@ -1,7 +1,6 @@
 //src/pages/Checkout.jsx
 import React, { useContext, useState, useEffect } from "react";
 import OrderSummary from "../components/OrderSummary";
-import { useLocation } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import AddressForm from "../components/AddressForm";
 import PaymentForm from "../components/PaymentForm";
@@ -24,6 +23,7 @@ const Checkout = () => {
       const price = parseFloat(product.price);
       return acc + (isNaN(price) ? 0 : price);
     }, 0);
+    setLoading(false);
     setSubTotal(totalSum);
   }, [cartItems]);
   
@@ -87,27 +87,6 @@ const Checkout = () => {
       setSubmittedBillAddress({}); // Clear billing address if unchecked
     }
   };
-
-  //Fetch products
-  useEffect(() => {
-      fetch("http://localhost:3001/api/products")
-      .then((res) => res.json())
-      .then((data) => {
-          const selected = data.filter((product) => product.selected === 1);
-
-          const totalSum = selected.reduce((acc, product) => {
-          const price = parseFloat(product.price);
-          return acc + (isNaN(price) ? 0 : price);
-          }, 0);
-
-          //setTotal(totalSum);
-          setLoading(false);
-      })
-      .catch((err) => {
-          console.error("Error fetching products:", err);
-          setLoading(false);
-      });
-  }, []);
 
   return (
     <>

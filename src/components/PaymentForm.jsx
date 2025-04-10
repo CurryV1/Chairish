@@ -1,11 +1,43 @@
-//src/components/addForm.jsx
+//src/components/PaymentForm.jsx
 import React from "react";
 
-const addForm = ({addForm, setAddForm, setSubmittedForm}) => {
+const PaymentForm = ({payForm, setPayForm, setSubmittedForm}) => {
+    const nameRegex = /^[A-Za-z'-]{3,}$/;
+    const numberRegex = /^[0-9]{16,}$/;
+    const csvRegex = /^\d{3,}$/;
+    const provider = [
+        "American Express", "Capital One", "Chase", "Citi", "Discover",   
+         "jetBlue", "MasterCard", "Visa"
+
+    ];
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSubmittedForm(addForm);
-        setAddForm({
+        const {
+            firstName,
+            lastName,
+            number,
+            csv
+        } = payForm;
+
+        // Validation
+        if (!nameRegex.test(firstName)) {
+            alert("Invalid First Name. Must be at least 3 characters and use only letters, hyphens, or apostrophes.");
+            return;
+        }
+        if (!nameRegex.test(lastName)) {
+            alert("Invalid Last Name. Must be at least 3 characters and use only letters, hyphens, or apostrophes.");
+            return;
+        }
+        if (!numberRegex.test(number)) {
+            alert("Invalid Card Number. Must be at least 16 numbers.");
+            return;
+        }
+        if (!csvRegex.test(csv)) {
+            alert("Invalid csv. Must be at least 3 numbers.");
+            return;
+        }
+        setSubmittedForm(payForm);
+        setPayForm({
             firstName: "",
             lastName: "",
             provider: "",
@@ -16,20 +48,64 @@ const addForm = ({addForm, setAddForm, setSubmittedForm}) => {
     };
     return(
         <form onSubmit={handleSubmit}>
-            <input type="text" className="m-2 outline-1" placeholder="First Name" value={addForm.firstName} onChange={(e) => setAddForm({ ...addForm, firstName: e.target.value})}></input>
-            <input type="text" className="m-2 outline-1" placeholder="Last Name" value={addForm.lastName} onChange={(e) => setAddForm({ ...addForm, lastName: e.target.value})}></input>
+            <input 
+                type="text"  
+                className="m-2 outline-1 px-2 py-1 rounded bg-white text-black border border-gray-300" 
+                placeholder="First Name" 
+                value={payForm.firstName} 
+                onChange={(e) => setPayForm({ ...payForm, firstName: e.target.value})}
+            ></input>
+            <input 
+                type="text" 
+                className="m-2 outline-1 px-2 py-1 rounded bg-white text-black border border-gray-300" 
+                placeholder="Last Name" 
+                value={payForm.lastName} 
+                onChange={(e) => setPayForm({ ...payForm, lastName: e.target.value})}
+            ></input>
             <br></br>
-            <input type="text" className="m-2 outline-1" placeholder="Card Provider" value={addForm.provider} onChange={(e) => setAddForm({ ...addForm, provider: e.target.value})}></input>
-            <input type="number" className="m-2 outline-1" placeholder="Card Number" value={addForm.number} onChange={(e) => setAddForm({ ...addForm, number: e.target.value})}></input>
-            <input type="month" className="m-2 outline-1" placeholder="Exp Date" value={addForm.expDate} onChange={(e) => setAddForm({ ...addForm, expDate: e.target.value})}></input>
-            <input type="number" className="m-2 outline-1" placeholder="CSV" value={addForm.csv} onChange={(e) => setAddForm({ ...addForm, csv: e.target.value})}></input>
+            <select 
+                className="m-2 outline-1 px-2 py-1 rounded bg-white text-black border border-gray-300" 
+                value={payForm.provider} 
+                onChange={(e) => setPayForm({ ...payForm, provider: e.target.value})}
+            >
+                <option value="">
+                    Select a Provider
+                </option>
+                {provider.map((name) => (<option key={name} value={name}>{name}</option>))}
+            </select>
+            <input 
+                type="number" 
+                className="m-2 outline-1 px-2 py-1 rounded bg-white text-black border border-gray-300" 
+                placeholder="Card Number" 
+                value={payForm.number} 
+                onChange={(e) => setPayForm({ ...payForm, number: e.target.value})}
+            ></input>
+            <input 
+                type="month" 
+                className="m-2 outline-1 px-2 py-1 rounded bg-white text-black border border-gray-300" 
+                placeholder="Exp Date" 
+                min={new Date().toISOString().slice(0, 7)}
+                value={payForm.expDate} 
+                onChange={(e) => setPayForm({ ...payForm, expDate: e.target.value})}
+            ></input>
+            <input 
+                type="number" 
+                className="m-2 outline-1 px-2 py-1 rounded bg-white text-black border border-gray-300" 
+                placeholder="CSV" 
+                value={payForm.csv} 
+                onChange={(e) => setPayForm({ ...payForm, csv: e.target.value})}
+            ></input>
             <br></br>
             <br></br>
-            <button type="submit" className="float-right gap-2 inline-flex justify-center rounded-full px-4 py-2 font-semibold 
-            bg-yellow-500 hover:bg-green-600 text-black focus-visile:outline-2" 
-            href="/checkout">Submit</button>
+            <button 
+                type="submit" 
+                className="float-right gap-2 inline-flex justify-center rounded-full px-4 py-2 font-semibold 
+                bg-yellow-500 hover:bg-green-600 text-black focus-visile:outline-2" 
+            >
+                Submit
+            </button>
         </form>
     );
 };
 
-export default addForm;
+export default PaymentForm;

@@ -3,11 +3,13 @@ import React, { useContext, useEffect, useState } from "react";
 import ProductCartCard from "../components/ProductCartCard";
 import OrderSummary from "../components/OrderSummary";
 import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   // Get cart items from our CartContext
   const { cartItems } = useContext(CartContext);
   const [subTotal, setSubTotal] = useState(0);
+  const navigate = useNavigate();
 
   // Recompute subtotal when cartItems change
   useEffect(() => {
@@ -45,7 +47,7 @@ const Cart = () => {
               <button
                 type="button"
                 className="inline-flex gap-2 justify-center rounded-full px-4 py-2 font-semibold bg-yellow-500 text-white hover:bg-amber-600 mb-4 sm:mb-0"
-                href="/"
+                onClick={() => navigate("/")}
               >
                 Continue Shopping
               </button>

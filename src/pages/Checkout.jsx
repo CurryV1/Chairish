@@ -1,7 +1,6 @@
 //src/pages/Checkout.jsx
 import React, { useContext, useState, useEffect } from "react";
 import OrderSummary from "../components/OrderSummary";
-import { useLocation } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import AddressForm from "../components/AddressForm";
 import PaymentForm from "../components/PaymentForm";
@@ -24,6 +23,7 @@ const Checkout = () => {
       const price = parseFloat(product.price);
       return acc + (isNaN(price) ? 0 : price);
     }, 0);
+    setLoading(false);
     setSubTotal(totalSum);
   }, [cartItems]);
   
@@ -88,27 +88,6 @@ const Checkout = () => {
     }
   };
 
-  //Fetch products
-  useEffect(() => {
-      fetch("http://localhost:3001/api/products")
-      .then((res) => res.json())
-      .then((data) => {
-          const selected = data.filter((product) => product.selected === 1);
-
-          const totalSum = selected.reduce((acc, product) => {
-          const price = parseFloat(product.price);
-          return acc + (isNaN(price) ? 0 : price);
-          }, 0);
-
-          //setTotal(totalSum);
-          setLoading(false);
-      })
-      .catch((err) => {
-          console.error("Error fetching products:", err);
-          setLoading(false);
-      });
-  }, []);
-
   return (
     <>
     <div className="container mx-auto p-4">
@@ -120,13 +99,12 @@ const Checkout = () => {
           <div className="grid col-span-2 row-span-3 grid-rows-3 gap-4 bg-yellow-500 h-200 border-amber-500">
             <div className="col-span-2 bg-white rounded-md border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow overflow-auto duration-300">
               <h3 className="p-2 text-2xl font-bold mb-4">Mailing Address</h3>
-              <br></br>
               <AddressForm addForm = {mailForm}  setAddForm = {setMailForm} setSubmittedForm = {setSubmittedMailAddress} />
 
             </div>
             
             <div className="col-span-2 bg-white rounded-md border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow overflow-auto duration-300">
-              <h3 className="p-2 text-2xl font-bold mb-4">Billing Address</h3>
+              <h3 className="pl-2 text-2xl font-bold mb-2">Billing Address</h3>
               <label className="ml-2"><input type="checkbox" className="outline-1" checked={sameAsMailing} onChange={handleCheckboxChange}></input> Same as Mailing Address</label>
               <AddressForm addForm = {billForm}  setAddForm = {setBillForm} setSubmittedForm = {setSubmittedBillAddress} />
             </div>
@@ -134,7 +112,7 @@ const Checkout = () => {
             <div className="col-span-2 bg-white rounded-md border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow overflow-auto duration-300">
               <h3 className="p-2 text-2xl font-bold mb-4">Payment Method</h3>
               <br></br>
-              <PaymentForm addForm = {paymentForm}  setAddForm = {setPaymentForm} setSubmittedForm = {setSubmittedPayment} />
+              <PaymentForm payForm = {paymentForm}  setPayForm = {setPaymentForm} setSubmittedForm = {setSubmittedPayment} />
             </div>
           </div>
 

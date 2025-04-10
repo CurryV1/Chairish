@@ -15,8 +15,7 @@ CREATE TABLE IF NOT EXISTS products (
     color TEXT,
     tags TEXT,
     category TEXT,           
-    image_ref TEXT,
-    selected BOOLEAN
+    image_ref TEXT
 )
 ''')
 

@@ -22,7 +22,7 @@ const SearchPage = lazy(() => import("./pages/SearchPage"));
 const Register = lazy(() => import("./pages/Register"));
 const ProductDetails = lazy(() => import("./pages/ProductDetails"));
 const AccountInfo = lazy(() => import ("./pages/AccountInfo"));
-const AuthenticationGate = lazy(() => import("./pages/AuthenticationGate"))
+const AuthGate = lazy(() => import("./pages/AuthGate"))
 
 
 const App = () => {
@@ -59,7 +59,7 @@ const App = () => {
                   <Route path="/search" element={<SearchPage />} />
                   <Route path="/product/:id" element={<ProductDetails />} />
                   <Route path="/accountInfo" element={<AccountInfo />} />
-                  <Route path="/authenticationGate" element={<AuthenticationGate />} />
+                  <Route path="/authenticationGate" element={<AuthGate />} />
                 </Routes>
               </Suspense>
             </motion.div>

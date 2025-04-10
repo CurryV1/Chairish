@@ -12,7 +12,7 @@ const Account = ({ onLoginSuccess }) => {
     e.preventDefault();
     setError('');
     setLoading(true);
-
+  
     try {
       const response = await fetch('http://localhost:3001/login', {
         method: 'POST',
@@ -21,18 +21,24 @@ const Account = ({ onLoginSuccess }) => {
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
+      const data = await response.json();
+      
       if (response.ok) {
-        const data = await response.json();
-        console.log('Account: Login successful!', data);
-        navigate('/'); // Redirect to the desired logged-in route
+        // Check if onLoginSuccess exists before calling it
+        if (typeof onLoginSuccess === 'function') {
+          onLoginSuccess(data);
+        } else {
+          console.log('Login successful:', data);
+          // Navigate to a dashboard or home page after successful login
+          navigate('/accountInfo');
+        }
       } else {
-        const errorData = await response.json();
-        setError(errorData.message || 'Account: Login failed. Please try again.');
+        setError(data.message || 'Login failed. Please try again.');
       }
     } catch (err) {
-      console.error('Account: There was an error during login:', err);
-      setError('Account: Network error. Please try again later.');
+      console.error('Login error:', err);
+      setError('Network error. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -103,9 +109,10 @@ const Account = ({ onLoginSuccess }) => {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              disabled={loading}
+              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-indigo-400"
             >
-              Sign in
+              {loading ? 'Signing in...' : 'Sign in'}
             </button>
           </div>
         </form>

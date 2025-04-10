@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { CartProvider } from "./context/CartContext";
+import { useState, useEffect } from 'react';
 
 // Lazy load page components
 const Home = lazy(() => import("./pages/Home"));
@@ -20,6 +21,9 @@ const Checkout = lazy(() => import("./pages/Checkout"));
 const SearchPage = lazy(() => import("./pages/SearchPage"));
 const Register = lazy(() => import("./pages/Register"));
 const ProductDetails = lazy(() => import("./pages/ProductDetails"));
+const AccountInfo = lazy(() => import ("./pages/AccountInfo"));
+const AuthenticationGate = lazy(() => import("./pages/AuthenticationGate"))
+
 
 const App = () => {
   const location = useLocation();
@@ -54,6 +58,8 @@ const App = () => {
                   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/search" element={<SearchPage />} />
                   <Route path="/product/:id" element={<ProductDetails />} />
+                  <Route path="/accountInfo" element={<AccountInfo />} />
+                  <Route path="/authenticationGate" element={<AuthenticationGate />} />
                 </Routes>
               </Suspense>
             </motion.div>

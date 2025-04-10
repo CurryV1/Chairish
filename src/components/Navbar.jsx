@@ -167,7 +167,7 @@ const Navbar = () => {
             <Link to="/faq" className="text-black text-lg mr-12">
               FAQ
             </Link>
-            <Link to="/account" className="text-black text-lg mr-12">
+            <Link to="/authenticationGate" className="text-black text-lg mr-12">
               Account
             </Link>
             {/* Cart Icon with badge */}

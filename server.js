@@ -67,17 +67,38 @@
 import express from "express";
 import cors from "cors";
 import sqlite3 from "sqlite3";
+import session from 'express-session';
+import flash from 'express-flash';
+import passport from 'passport';
+import initializePassport from './passport-config.js';
 
 const app = express();
 const port = 3001;
 
+
 // Enable CORS for all origins
 app.use(cors({ origin: "*" }));
 app.options("*", cors());
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json());
+app.use(flash())
+app.use(session({
+  secret: "super-secret-stuff",
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Enable verbose mode on sqlite3
 const sqlite = sqlite3.verbose();
+const users = []
 
+initializePassport(
+  passport,
+  email => users.find(user => user.email === email),
+  id => users.find(user => user.id === id)
+)
 // Connect to your SQLite database
 const db = new sqlite.Database("./ecommerce.db", (err) => {
   if (err) {
@@ -134,6 +155,42 @@ app.get("/api/products", (req, res) => {
     res.json(rows);
   });
 });
+
+
+app.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(401).json({ message: info.message || 'Login failed' });
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.status(200).json({ message: 'Login successful' });
+    });
+  })(req, res, next);
+});
+
+app.post('/register', async (req, res) => {
+  try {
+    console.log('Received registration request:', req.body); // Add this for debugging
+    users.push({
+      id: Date.now().toString(),
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password
+    });
+    console.log('Users array after registration:', users);
+    res.status(200).json({ message: 'Registration successful!' }); // Send success response
+  } catch (error) {
+    console.error('Error during registration:', error);
+    res.status(500).json({ message: 'Registration failed on the server.' }); // Send error response
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

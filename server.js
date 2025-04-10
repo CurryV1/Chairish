@@ -77,7 +77,11 @@ const port = 3001;
 
 
 // Enable CORS for all origins
-app.use(cors({ origin: "*" }));
+//app.use(cors({ origin: "*" }));
+app.use(cors({ 
+  origin: "http://localhost:5173", // Or whatever port your React app runs on
+  credentials: true 
+}));
 app.options("*", cors());
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
@@ -157,7 +161,7 @@ app.get("/api/products", (req, res) => {
 });
 
 
-app.post('/login', (req, res, next) => {
+app.post('/login',checkNotAuthenticated, (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) {
       return next(err);
@@ -174,7 +178,9 @@ app.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-app.post('/register', async (req, res) => {
+
+
+app.post('/register',checkNotAuthenticated, async (req, res) => {
   try {
     console.log('Received registration request:', req.body); // Add this for debugging
     users.push({
@@ -191,7 +197,37 @@ app.post('/register', async (req, res) => {
   }
 });
 
+app.get('/auth/status', (req, res) => {
+  if (req.isAuthenticated()) {
+    // User is authenticated
+    return res.status(200).json({ 
+      authenticated: true,
+      user: req.user // This will include the user information if available
+    });
+  } else {
+    // User is not authenticated
+    return res.status(200).json({ 
+      authenticated: false,
+      message: 'User is not authenticated'
+    });
+  }
+});
 
+function checkAuthenticated(req, res, next) {''
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  // Instead of redirecting, send a 401 status code
+  return res.status(401).json({ message: 'Not authenticated' });
+}
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    // Instead of redirecting, send a 403 status code
+    return res.status(403).json({ message: 'Already authenticated' });
+  }
+  next();
+}
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

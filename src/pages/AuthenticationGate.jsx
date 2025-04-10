@@ -1,52 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import AccountInfo from './AccountInfo';
+import { useState, useEffect } from 'react';
 import Account from './Account';
+import AccountInfo from './AccountInfo';
 
 const AuthenticationGate = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
-  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    console.log('AuthenticationGate: useEffect triggered');
-
-    const checkAuth = async () => {
+    const checkAuthStatus = async () => {
       try {
-        console.log('AuthenticationGate: Checking authentication status...');
-        const response = await fetch('http://localhost:3001/auth/status');
-        console.log('AuthenticationGate: Auth status response:', response);
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log('AuthenticationGate: Auth status data:', data);
-          setIsLoggedIn(data.isLoggedIn);
-        } else {
-          console.log('AuthenticationGate: Auth status check failed (not ok status)');
-          setIsLoggedIn(false);
+        const response = await fetch('http://localhost:3001/auth/status', {
+          credentials: 'include' // Important for sessions to work
+        });
+        
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
+        
+        const data = await response.json();
+        setIsAuthenticated(data.authenticated);
+        setUser(data.user || null);
       } catch (error) {
-        console.error('AuthenticationGate: Error checking auth:', error);
-        setIsLoggedIn(false);
+        console.error('Error checking auth status:', error);
+        setIsAuthenticated(false);
+      } finally {
+        setLoading(false);
       }
     };
 
-    checkAuth();
-  }, [navigate]);
+    checkAuthStatus();
+  }, []);
 
-  console.log('AuthenticationGate: isLoggedIn state:', isLoggedIn);
-
-  if (isLoggedIn === null) {
-    console.log('AuthenticationGate: Rendering loading state');
-    return <div>Checking authentication...</div>;
+  if (loading) {
+    return <div>Loading authentication status...</div>;
   }
 
-  if (isLoggedIn) {
-    console.log('AuthenticationGate: User is logged in, rendering AccountInfo');
-    return <AccountInfo />;
-  } else {
-    console.log('AuthenticationGate: User is not logged in, rendering Account');
-    return <Account />;
-  }
+  // Directly return the appropriate component
+  return isAuthenticated ? <AccountInfo user={user} /> : <Account />;
 };
 
 export default AuthenticationGate;

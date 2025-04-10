@@ -1,15 +1,32 @@
 //src/pages/Checkout.jsx
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import OrderSummary from "../components/OrderSummary";
+import { useLocation } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
+import AddressForm from "../components/AddressForm";
+import PaymentForm from "../components/PaymentForm";
 
 const Checkout = () => {
-  const [subTotal, setTotal] = useState(0); // Subtotal of selected products
   const [loading, setLoading] = useState(true);
+  const { clearCart } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
   const [submittedMailAddress, setSubmittedMailAddress] = useState(null);
   const [submittedBillAddress, setSubmittedBillAddress] = useState(null);
   const [submittedPayment, setSubmittedPayment] = useState(null);
   const [sameAsMailing, setSameAsMailing] = useState(false);
   const [paymentSubmitted, setPaymentSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [subTotal, setSubTotal] = useState(0);
+
+  // Recompute subtotal when cartItems change
+  useEffect(() => {
+    const totalSum = cartItems.reduce((acc, product) => {
+      const price = parseFloat(product.price);
+      return acc + (isNaN(price) ? 0 : price);
+    }, 0);
+    setSubTotal(totalSum);
+  }, [cartItems]);
+  
   const [mailForm, setMailForm] = useState({
     firstName: "",
     lastName: "",
@@ -19,7 +36,7 @@ const Checkout = () => {
     city: "",
     state: "",
     zip: "",
-  })
+  });
   const [billForm, setBillForm] = useState({
     firstName: "",
     lastName: "",
@@ -29,7 +46,7 @@ const Checkout = () => {
     city: "",
     state: "",
     zip: "",
-  })
+  });
   const [paymentForm, setPaymentForm] = useState({
     firstName: "",
     lastName: "",
@@ -37,61 +54,31 @@ const Checkout = () => {
     number: "",
     expDate: "",
     csv: "",
-  })
+  });
   const clearForm = (formSetter) => {
     formSetter(null);
   };
-  const handleMailSubmit = (e) => {
-    e.preventDefault();
-    setSubmittedMailAddress(mailForm); // Save it
-    setMailForm({                      // Then clear it
-      firstName: "",
-      lastName: "",
-      street1: "",
-      street2: "",
-      apt: "",
-      city: "",
-      state: "",
-      zip: "",
-    });
-  };
-  const handleBillSubmit = (e) => {
-    e.preventDefault();
-    setSubmittedBillAddress(billForm);
-    setBillForm({
-      firstName: "",
-      lastName: "",
-      street1: "",
-      street2: "",
-      apt: "",
-      city: "",
-      state: "",
-      zip: "",
-    });
-  };
-  const handlePayment = (e) => {
-    e.preventDefault();
-    setSubmittedPayment(paymentForm);
-    setPaymentForm({
-      firstName: "",
-      lastName: "",
-      provider: "",
-      number: "",
-      expDate: "",
-      csv: "",
-    });
-  };
   const handlePaymentSubmit = (e) => {
     e.preventDefault();
+    if (!submittedMailAddress || !submittedBillAddress || !submittedPayment) {
+      setErrorMessage("Please complete all sections before submitting your order.");
+      setPaymentSubmitted(false); // just in case it was previously set
+      return;
+    }
+    setErrorMessage("");
     setPaymentSubmitted(true);
     clearForm(setSubmittedMailAddress);
     clearForm(setSubmittedBillAddress);
     clearForm(setSubmittedPayment);
+    clearCart();
     setTimeout(() => {
         setPaymentSubmitted(false);
     }, 3000);
-  }
-
+  };
+  const handleClose = (e) => {
+    e.preventDefault();
+    setPaymentSubmitted(false);
+  };
   const handleCheckboxChange = () => {
     setSameAsMailing(!sameAsMailing);
     if (!sameAsMailing) {
@@ -113,7 +100,7 @@ const Checkout = () => {
           return acc + (isNaN(price) ? 0 : price);
           }, 0);
 
-          setTotal(totalSum);
+          //setTotal(totalSum);
           setLoading(false);
       })
       .catch((err) => {
@@ -134,62 +121,20 @@ const Checkout = () => {
             <div className="col-span-2 bg-white rounded-md border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow overflow-auto duration-300">
               <h3 className="p-2 text-2xl font-bold mb-4">Mailing Address</h3>
               <br></br>
-              <form onSubmit={handleMailSubmit}>
-                <input type="text" className="m-2 outline-1" placeholder="First Name" value={mailForm.firstName} onChange={(e) => setMailForm({ ...mailForm, firstName: e.target.value})}></input>
-                <input type="text" className="m-2 outline-1" placeholder="Last Name" value={mailForm.lastName} onChange={(e) => setMailForm({ ...mailForm, lastName: e.target.value})}></input>
-                <br></br>
-                <input type="text" className="m-2 outline-1" placeholder="Street Name 1" value={mailForm.street1} onChange={(e) => setMailForm({ ...mailForm, street1: e.target.value})}></input>
-                <input type="text" className="m-2 outline-1" placeholder="Street Name 2 (Optional)" value={mailForm.street2} onChange={(e) => setMailForm({ ...mailForm, street2: e.target.value})}></input>
-                <input type="number" className="m-2 outline-1" placeholder="Apt #" value={mailForm.apt} onChange={(e) => setMailForm({ ...mailForm, apt: e.target.value})}></input>
-                <br></br>
-                <input type="text" className="m-2 outline-1" placeholder="City" value={mailForm.city} onChange={(e) => setMailForm({ ...mailForm, city: e.target.value})}></input>
-                <input type="text" className="m-2 outline-1" placeholder="State" value={mailForm.state} onChange={(e) => setMailForm({ ...mailForm, state: e.target.value})}></input>
-                <input type="number" className="m-2 outline-1" placeholder="Zip Code" value={mailForm.zip} onChange={(e) => setMailForm({ ...mailForm, zip: e.target.value})}></input>
-                <br></br>
-                <button type="submit" className="float-right gap-2 inline-flex justify-center rounded-full px-4 py-2 font-semibold 
-                bg-yellow-500 hover:bg-green-600 text-black focus-visile:outline-2" 
-                href="/checkout">Submit</button>
-              </form>
+              <AddressForm addForm = {mailForm}  setAddForm = {setMailForm} setSubmittedForm = {setSubmittedMailAddress} />
+
             </div>
             
             <div className="col-span-2 bg-white rounded-md border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow overflow-auto duration-300">
               <h3 className="p-2 text-2xl font-bold mb-4">Billing Address</h3>
               <label className="ml-2"><input type="checkbox" className="outline-1" checked={sameAsMailing} onChange={handleCheckboxChange}></input> Same as Mailing Address</label>
-              <form onSubmit={handleBillSubmit}>
-                <input type="text" className="m-2 outline-1" placeholder="First Name" value={billForm.firstName} onChange={(e) => setBillForm({ ...billForm, firstName: e.target.value})}></input>
-                <input type="text" className="m-2 outline-1" placeholder="Last Name" value={billForm.lastName} onChange={(e) => setBillForm({ ...billForm, lastName: e.target.value})}></input>
-                <br></br>
-                <input type="text" className="m-2 outline-1" placeholder="Street Name 1" value={billForm.street1} onChange={(e) => setBillForm({ ...billForm, street1: e.target.value})}></input>
-                <input type="text" className="m-2 outline-1" placeholder="Street Name 2 (Optional)" value={billForm.street2} onChange={(e) => setBillForm({ ...billForm, street2: e.target.value})}></input>
-                <input type="number" className="m-2 outline-1" placeholder="Apt #" value={billForm.apt} onChange={(e) => setBillForm({ ...billForm, apt: e.target.value})}></input>
-                <br></br>
-                <input type="text" className="m-2 outline-1" placeholder="City" value={billForm.city} onChange={(e) => setBillForm({ ...billForm, city: e.target.value})}></input>
-                <input type="text" className="m-2 outline-1" placeholder="State" value={billForm.state} onChange={(e) => setBillForm({ ...billForm, state: e.target.value})}></input>
-                <input type="number" className="m-2 outline-1" placeholder="Zip Code" value={billForm.zip} onChange={(e) => setBillForm({ ...billForm, zip: e.target.value})}></input>
-                <br></br>
-                <button type="submit" className="float-right gap-2 inline-flex justify-center rounded-full px-4 py-2 font-semibold 
-                bg-yellow-500 hover:bg-green-600 text-black focus-visile:outline-2" 
-                href="/checkout">Submit</button>
-              </form>
+              <AddressForm addForm = {billForm}  setAddForm = {setBillForm} setSubmittedForm = {setSubmittedBillAddress} />
             </div>
             
             <div className="col-span-2 bg-white rounded-md border border-gray-200 shadow-lg hover:shadow-2xl transition-shadow overflow-auto duration-300">
               <h3 className="p-2 text-2xl font-bold mb-4">Payment Method</h3>
               <br></br>
-              <form onSubmit={handlePayment}>
-                <input type="text" className="m-2 outline-1" placeholder="First Name" value={paymentForm.firstName} onChange={(e) => setPaymentForm({ ...paymentForm, firstName: e.target.value})}></input>
-                <input type="text" className="m-2 outline-1" placeholder="Last Name" value={paymentForm.lastName} onChange={(e) => setPaymentForm({ ...paymentForm, lastName: e.target.value})}></input>
-                <br></br>
-                <input type="text" className="m-2 outline-1" placeholder="Card Provider" value={paymentForm.provider} onChange={(e) => setPaymentForm({ ...paymentForm, provider: e.target.value})}></input>
-                <input type="number" className="m-2 outline-1" placeholder="Card Number" value={paymentForm.number} onChange={(e) => setPaymentForm({ ...paymentForm, number: e.target.value})}></input>
-                <input type="month" className="m-2 outline-1" placeholder="Exp Date" value={paymentForm.expDate} onChange={(e) => setPaymentForm({ ...paymentForm, expDate: e.target.value})}></input>
-                <input type="number" className="m-2 outline-1" placeholder="CSV" value={paymentForm.csv} onChange={(e) => setPaymentForm({ ...paymentForm, csv: e.target.value})}></input>
-                <br></br>
-                <br></br>
-                <button type="submit" className="float-right gap-2 inline-flex justify-center rounded-full px-4 py-2 font-semibold 
-                bg-yellow-500 hover:bg-green-600 text-black focus-visile:outline-2" 
-                href="/checkout">Submit</button>
-              </form>
+              <PaymentForm addForm = {paymentForm}  setAddForm = {setPaymentForm} setSubmittedForm = {setSubmittedPayment} />
             </div>
           </div>
 
@@ -233,9 +178,21 @@ const Checkout = () => {
               <button type="submit" className="float-right gap-2 inline-flex justify-center rounded-full px-4 py-2 font-semibold 
               bg-yellow-500 hover:bg-green-600 text-black focus-visile:outline-2">Make Payment</button>
             </form>
+            {errorMessage && (
+              <div className="text-red-600 font-medium mt-4">
+                {errorMessage}
+              </div>
+            )}
             {paymentSubmitted &&(
               <div className="popup-notice">
                 <div className="popup-content">
+                  <button 
+                    type="button" 
+                    className=""
+                    onClick={handleClose}
+                    >
+                      x
+                    </button>
                   <p>Order has been Placed!</p>
                 </div>
               </div>

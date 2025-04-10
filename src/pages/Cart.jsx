@@ -18,6 +18,10 @@ const Cart = () => {
     setSubTotal(totalSum);
   }, [cartItems]);
 
+  const handleCheckout = () => {
+    navigate("/checkout", { state: { subTotal } });
+  };
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">Shopping Cart</h1>
@@ -38,18 +42,20 @@ const Cart = () => {
             <OrderSummary subTotal={subTotal} />
             <hr className="p-2" />
             <div className="p-10 flex flex-col sm:flex-row justify-between">
-              <a
+              <button
+                type="button"
                 className="inline-flex gap-2 justify-center rounded-full px-4 py-2 font-semibold bg-yellow-500 text-white hover:bg-amber-600 mb-4 sm:mb-0"
                 href="/"
               >
                 Continue Shopping
-              </a>
-              <a
+              </button>
+              <button
+                type="button"
                 className="inline-flex gap-2 justify-center rounded-full px-4 py-2 font-semibold bg-green-600 text-white hover:bg-green-700"
-                href="/checkout"
+                onClick={handleCheckout}
               >
                 Go to Checkout
-              </a>
+              </button>
             </div>
           </div>
         </div>

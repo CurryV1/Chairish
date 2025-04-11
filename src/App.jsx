@@ -6,7 +6,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { CartProvider } from "./context/CartContext";
-import { useState, useEffect } from 'react';
+// eslint-disable-next-line no-unused-vars
+import { useState, useEffect } from "react";
 
 // Lazy load page components
 const Home = lazy(() => import("./pages/Home"));
@@ -21,9 +22,8 @@ const Checkout = lazy(() => import("./pages/Checkout"));
 const SearchPage = lazy(() => import("./pages/SearchPage"));
 const Register = lazy(() => import("./pages/Register"));
 const ProductDetails = lazy(() => import("./pages/ProductDetails"));
-const AccountInfo = lazy(() => import ("./pages/AccountInfo"));
-const AuthGate = lazy(() => import("./pages/AuthGate"))
-
+const AccountInfo = lazy(() => import("./pages/AccountInfo"));
+const AuthGate = lazy(() => import("./pages/AuthGate"));
 
 const App = () => {
   const location = useLocation();

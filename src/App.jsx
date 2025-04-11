@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
 
 // Lazy load page components
 const Home = lazy(() => import("./pages/Home"));
-const LivingRoom = lazy(() => import("./pages/Livingroom"));
+const LivingRoom = lazy(() => import("./pages/LivingRoom"));
 const Office = lazy(() => import("./pages/Office"));
 const Bedroom = lazy(() => import("./pages/Bedroom"));
 const FAQPage = lazy(() => import("./pages/FAQ"));

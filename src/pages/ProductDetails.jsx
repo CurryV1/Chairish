@@ -1,14 +1,19 @@
 // src/pages/ProductDetails.jsx
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { addToCart } = useContext(CartContext);
+
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // For now, fetch all products and filter the one with the matching id
+    // For now, fetch all products and filter for the one matching the id
     fetch("http://localhost:3001/api/products")
       .then((res) => res.json())
       .then((data) => {
@@ -21,6 +26,22 @@ const ProductDetails = () => {
         setLoading(false);
       });
   }, [id]);
+
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart(product);
+      // Optionally, you can display a confirmation toast here.
+    }
+  };
+
+  const handleContinueShopping = () => {
+    // If you saved a "from" location in location.state, navigate there, otherwise, fallback:
+    if (location.state && location.state.from) {
+      navigate(location.state.from);
+    } else {
+      navigate(-1);
+    }
+  };
 
   if (loading) {
     return (
@@ -60,7 +81,21 @@ const ProductDetails = () => {
               {product.color}
             </p>
           )}
-          {/* You can add more product fields here as needed */}
+          {/* Buttons Section */}
+          <div className="mt-6 flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={handleAddToCart}
+              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+            >
+              Add to Cart
+            </button>
+            <button
+              onClick={handleContinueShopping}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+            >
+              Continue Shopping
+            </button>
+          </div>
         </div>
       </div>
     </div>

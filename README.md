@@ -1,4 +1,4 @@
-# Furniture E-commerce
+# Chairish - Furniture Ecommerce
 
 Running the Project Locally:
 

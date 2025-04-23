@@ -14,7 +14,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     // For now, fetch all products and filter for the one matching the id
-    fetch("http://localhost:3001/api/products")
+    fetch("/data/products.json")
       .then((res) => res.json())
       .then((data) => {
         const found = data.find((prod) => prod.id.toString() === id.toString());

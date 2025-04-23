@@ -11,7 +11,7 @@ const Bedroom = () => {
 
   // Fetch Bedroom products
   useEffect(() => {
-    fetch("http://localhost:3001/api/products?category=bedroom")
+    fetch("/data/products.json")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);

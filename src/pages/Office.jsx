@@ -11,7 +11,7 @@ const Office = () => {
 
   // Fetch Office products
   useEffect(() => {
-    fetch("http://localhost:3001/api/products?category=office")
+    fetch("/data/products.json")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);

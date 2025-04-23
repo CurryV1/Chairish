@@ -11,7 +11,7 @@ const LivingRoom = () => {
 
   // Fetch products for Living Room category
   useEffect(() => {
-    fetch("http://localhost:3001/api/products?category=living%20room")
+    fetch("/data/products.json")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);

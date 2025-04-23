@@ -14,14 +14,25 @@ const SearchPage = () => {
       setResults([]);
       return;
     }
+
     setLoading(true);
-    fetch(
-      `http://localhost:3001/api/products?search=${encodeURIComponent(query)}`
-    )
+    fetch("/data/products.json")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Search results:", data);
-        setResults(data);
+        const filteredResults = data.filter((product) => {
+          const searchText = query.toLowerCase();
+          return (
+            (product.name && product.name.toLowerCase().includes(searchText)) ||
+            (product.description &&
+              product.description.toLowerCase().includes(searchText)) ||
+            (product.tags && product.tags.toLowerCase().includes(searchText)) ||
+            (product.material &&
+              product.material.toLowerCase().includes(searchText)) ||
+            (product.color && product.color.toLowerCase().includes(searchText))
+          );
+        });
+
+        setResults(filteredResults);
         setLoading(false);
       })
       .catch((err) => {

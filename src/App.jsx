@@ -24,6 +24,7 @@ const Register = lazy(() => import("./pages/Register"));
 const ProductDetails = lazy(() => import("./pages/ProductDetails"));
 const AccountInfo = lazy(() => import("./pages/AccountInfo"));
 const AuthGate = lazy(() => import("./pages/AuthGate"));
+const Confirmation = lazy(() => import("./pages/Confirmation"));
 
 const App = () => {
   const location = useLocation();
@@ -60,6 +61,7 @@ const App = () => {
                   <Route path="/product/:id" element={<ProductDetails />} />
                   <Route path="/accountInfo" element={<AccountInfo />} />
                   <Route path="/authenticationGate" element={<AuthGate />} />
+                  <Route path="/confirmation" element={<Confirmation />} />
                 </Routes>
               </Suspense>
             </motion.div>

@@ -13,7 +13,6 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // For now, fetch all products and filter for the one matching the id
     fetch("/data/products.json")
       .then((res) => res.json())
       .then((data) => {
@@ -28,15 +27,11 @@ const ProductDetails = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-    if (product) {
-      addToCart(product);
-      // Optionally, you can display a confirmation toast here.
-    }
+    if (product) addToCart(product);
   };
 
   const handleContinueShopping = () => {
-    // If you saved a "from" location in location.state, navigate there, otherwise, fallback:
-    if (location.state && location.state.from) {
+    if (location.state?.from) {
       navigate(location.state.from);
     } else {
       navigate(-1);
@@ -54,50 +49,85 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex flex-col md:flex-row items-start">
-        {/* Image Section */}
-        <div className="w-full md:w-1/2">
+    <div className="container mx-auto p-6">
+      <div className="flex flex-col md:flex-row gap-8">
+        {/* Image */}
+        <div className="md:w-1/2">
           <img
             src={product.image_ref}
             alt={product.name}
-            className="w-full h-auto object-cover rounded shadow"
+            className="w-full h-auto object-cover rounded-xl shadow-lg"
           />
         </div>
-        {/* Details Section */}
-        <div className="w-full md:w-1/2 p-4">
-          <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
-          <p className="text-lg text-gray-700 mb-4">{product.description}</p>
-          <p className="text-xl font-bold mb-4">${product.price}</p>
-          {product.material && (
-            <p className="mb-2">
-              <span className="font-semibold">Material: </span>
-              {product.material}
-            </p>
+
+        {/* Details */}
+        <div className="md:w-1/2 flex flex-col gap-4">
+          <h1 className="text-4xl font-bold">{product.name}</h1>
+          <p className="text-gray-600">{product.description}</p>
+
+          <div className="text-3xl font-semibold text-grey-600">
+            ${product.price}
+          </div>
+
+          <div className="text-sm text-gray-600 space-y-1">
+            {product.material && (
+              <p>
+                <span className="font-semibold">Material:</span>{" "}
+                {product.material}
+              </p>
+            )}
+            {product.color && (
+              <p>
+                <span className="font-semibold">Color:</span> {product.color}
+              </p>
+            )}
+            {product.category && (
+              <p>
+                <span className="font-semibold">Category:</span>{" "}
+                {product.category}
+              </p>
+            )}
+          </div>
+
+          {product.tags && (
+            <div className="flex flex-wrap gap-2 mt-2">
+              {product.tags.split(",").map((tag, index) => (
+                <span
+                  key={index}
+                  className="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full"
+                >
+                  #{tag.trim()}
+                </span>
+              ))}
+            </div>
           )}
-          {product.color && (
-            <p className="mb-2">
-              <span className="font-semibold">Color: </span>
-              {product.color}
-            </p>
-          )}
-          {/* Buttons Section */}
-          <div className="mt-6 flex flex-col sm:flex-row gap-4">
+
+          <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <button
               onClick={handleAddToCart}
-              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+              className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg shadow"
             >
               Add to Cart
             </button>
             <button
               onClick={handleContinueShopping}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow"
             >
               Continue Shopping
             </button>
           </div>
         </div>
       </div>
+
+      {/* Optional: Related products */}
+      {/* 
+      <div className="mt-12">
+        <h2 className="text-2xl font-semibold mb-4">You may also like</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          // Insert related product cards here...
+        </div>
+      </div> 
+      */}
     </div>
   );
 };

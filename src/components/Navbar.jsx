@@ -3,10 +3,12 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { CartContext } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
   const { cartItems } = useContext(CartContext);
+  const { user } = useAuth();
   const navigate = useNavigate();
   const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -23,13 +25,11 @@ const Navbar = () => {
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         {/* Left Side: Title and Category Links */}
         <div className="flex items-center w-full md:w-auto">
-          {/* Title remains unchanged */}
           <div className="flex-shrink-0">
             <Link to="/" className="text-black font-bold text-xl">
               Chairish
             </Link>
           </div>
-          {/* Category Links container shifted right by 175px */}
           <div
             style={{ marginLeft: "175px" }}
             className="flex items-center space-x-6"
@@ -66,6 +66,7 @@ const Navbar = () => {
               </button>
             </form>
           </div>
+
           {/* Secondary Links and Cart Icon */}
           <div className="flex flex-wrap items-center gap-4 justify-center">
             <Link
@@ -77,10 +78,12 @@ const Navbar = () => {
             <Link to="/faq" className="text-black text-lg mr-12">
               FAQ
             </Link>
-            <Link to="/authenticationGate" className="text-black text-lg mr-12">
+            <Link
+              to={user ? "/accountInfo" : "/account"}
+              className="text-black text-lg mr-12"
+            >
               Account
             </Link>
-            {/* Cart Icon with badge */}
             <Link to="/cart" className="relative text-black text-lg">
               <FaShoppingCart size={24} />
               {totalQuantity > 0 && (

@@ -6,8 +6,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { CartProvider } from "./context/CartContext";
-// eslint-disable-next-line no-unused-vars
-import { useState, useEffect } from "react";
+import { AuthProvider } from "./context/AuthContext";
+import PrivateRoute from "./routes/PrivateRoute";
 
 // Lazy load page components
 const Home = lazy(() => import("./pages/Home"));
@@ -23,53 +23,60 @@ const SearchPage = lazy(() => import("./pages/SearchPage"));
 const Register = lazy(() => import("./pages/Register"));
 const ProductDetails = lazy(() => import("./pages/ProductDetails"));
 const AccountInfo = lazy(() => import("./pages/AccountInfo"));
-const AuthGate = lazy(() => import("./pages/AuthGate"));
 const Confirmation = lazy(() => import("./pages/Confirmation"));
 
 const App = () => {
   const location = useLocation();
   return (
-    <CartProvider>
-      <div className="flex flex-col min-h-screen">
-        <Navbar />
-        <main className="flex-grow bg-yellow-500">
-          <AnimatePresence exitBeforeEnter>
-            <motion.div
-              key={location.pathname}
-              initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <Suspense
-                fallback={
-                  <div className="container mx-auto p-4">Loading...</div>
-                }
+    <AuthProvider>
+      <CartProvider>
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-grow bg-yellow-500">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={location.pathname}
+                initial={{ opacity: 0, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <Routes location={location}>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/livingroom" element={<LivingRoom />} />
-                  <Route path="/office" element={<Office />} />
-                  <Route path="/bedroom" element={<Bedroom />} />
-                  <Route path="/faq" element={<FAQPage />} />
-                  <Route path="/contactus" element={<ContactUs />} />
-                  <Route path="/account" element={<Account />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/cart" element={<Cart />} />
-                  <Route path="/checkout" element={<Checkout />} />
-                  <Route path="/search" element={<SearchPage />} />
-                  <Route path="/product/:id" element={<ProductDetails />} />
-                  <Route path="/accountInfo" element={<AccountInfo />} />
-                  <Route path="/authenticationGate" element={<AuthGate />} />
-                  <Route path="/confirmation" element={<Confirmation />} />
-                </Routes>
-              </Suspense>
-            </motion.div>
-          </AnimatePresence>
-        </main>
-        <Footer />
-      </div>
-    </CartProvider>
+                <Suspense
+                  fallback={
+                    <div className="container mx-auto p-4">Loading...</div>
+                  }
+                >
+                  <Routes location={location}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/livingroom" element={<LivingRoom />} />
+                    <Route path="/office" element={<Office />} />
+                    <Route path="/bedroom" element={<Bedroom />} />
+                    <Route path="/faq" element={<FAQPage />} />
+                    <Route path="/contactus" element={<ContactUs />} />
+                    <Route path="/account" element={<Account />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/search" element={<SearchPage />} />
+                    <Route path="/product/:id" element={<ProductDetails />} />
+                    <Route
+                      path="/accountInfo"
+                      element={
+                        <PrivateRoute>
+                          <AccountInfo />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route path="/confirmation" element={<Confirmation />} />
+                  </Routes>
+                </Suspense>
+              </motion.div>
+            </AnimatePresence>
+          </main>
+          <Footer />
+        </div>
+      </CartProvider>
+    </AuthProvider>
   );
 };
 

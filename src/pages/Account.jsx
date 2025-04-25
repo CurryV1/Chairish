@@ -1,15 +1,17 @@
 // src/pages/Account.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-const Account = ({ onLoginSuccess }) => {
+const Account = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
 
@@ -19,30 +21,12 @@ const Account = ({ onLoginSuccess }) => {
     }
 
     setLoading(true);
-
     try {
-      const response = await fetch("http://localhost:3001/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.message || "Login failed.");
-
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-
-      if (onLoginSuccess) {
-        onLoginSuccess(data);
-      } else {
-        navigate("/accountInfo");
-      }
+      login(email.trim());
+      navigate("/accountInfo");
+      // eslint-disable-next-line no-unused-vars
     } catch (err) {
-      console.error("Login error:", err);
-      setError(err.message || "Something went wrong.");
+      setError("Failed to sign in.");
     } finally {
       setLoading(false);
     }
@@ -73,9 +57,7 @@ const Account = ({ onLoginSuccess }) => {
             </label>
             <input
               id="email"
-              name="email"
               type="email"
-              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -91,24 +73,20 @@ const Account = ({ onLoginSuccess }) => {
             </label>
             <input
               id="password"
-              name="password"
               type="password"
-              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
 
-          <div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full rounded-md bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-700 disabled:bg-indigo-400"
-            >
-              {loading ? "Signing in..." : "Sign In"}
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full rounded-md bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-700 disabled:bg-indigo-400"
+          >
+            {loading ? "Signing in..." : "Sign In"}
+          </button>
         </form>
 
         <p className="mt-6 text-center text-sm text-gray-500">

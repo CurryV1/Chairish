@@ -1,16 +1,17 @@
 // src/pages/Register.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-const Register = ({ onRegisterSuccess }) => {
+const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-
   const navigate = useNavigate();
+  const { register } = useAuth();
 
   const validateFields = () => {
     if (!name.trim() || !email.trim() || !password.trim()) {
@@ -37,33 +38,13 @@ const Register = ({ onRegisterSuccess }) => {
     }
 
     setLoading(true);
-
     try {
-      const response = await fetch("http://localhost:3001/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
-          password: password.trim(),
-        }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.message || "Registration failed");
-
-      setSuccessMessage("Registration successful! Redirecting to login...");
-      if (onRegisterSuccess) {
-        onRegisterSuccess(data);
-      } else {
-        setTimeout(() => navigate("/account"), 2000);
-      }
+      register(email.trim(), name.trim());
+      setSuccessMessage("Registration successful! Redirecting to dashboard...");
+      setTimeout(() => navigate("/"), 1500);
+      // eslint-disable-next-line no-unused-vars
     } catch (err) {
-      console.error("Registration error:", err);
-      setError(err.message || "Registration failed. Please try again.");
+      setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -100,9 +81,7 @@ const Register = ({ onRegisterSuccess }) => {
             </label>
             <input
               id="name"
-              name="name"
               type="text"
-              autoComplete="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -118,9 +97,7 @@ const Register = ({ onRegisterSuccess }) => {
             </label>
             <input
               id="email"
-              name="email"
               type="email"
-              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -136,24 +113,20 @@ const Register = ({ onRegisterSuccess }) => {
             </label>
             <input
               id="password"
-              name="password"
               type="password"
-              autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
 
-          <div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full rounded-md bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-700 disabled:bg-indigo-400"
-            >
-              {loading ? "Creating Account..." : "Create Account"}
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full rounded-md bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-700 disabled:bg-indigo-400"
+          >
+            {loading ? "Creating Account..." : "Create Account"}
+          </button>
         </form>
 
         <p className="mt-6 text-center text-sm text-gray-500">

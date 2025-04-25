@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -49,27 +51,40 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="container mx-auto p-6">
-      <div className="flex flex-col md:flex-row gap-8">
+    <motion.div
+      className="container mx-auto px-4 py-8 sm:px-6 lg:px-8"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+    >
+      <motion.div
+        className="flex flex-col lg:flex-row gap-8"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
         {/* Image */}
-        <div className="md:w-1/2">
+        <div className="w-full lg:w-1/2">
           <img
             src={product.image_ref}
             alt={product.name}
             className="w-full h-auto object-cover rounded-xl shadow-lg"
+            loading="lazy"
           />
         </div>
 
         {/* Details */}
-        <div className="md:w-1/2 flex flex-col gap-4">
-          <h1 className="text-4xl font-bold">{product.name}</h1>
-          <p className="text-gray-600">{product.description}</p>
+        <div className="w-full lg:w-1/2 flex flex-col gap-4">
+          <h1 className="text-3xl sm:text-4xl font-bold">{product.name}</h1>
+          <p className="text-base sm:text-lg text-gray-600">
+            {product.description}
+          </p>
 
-          <div className="text-3xl font-semibold text-grey-600">
+          <div className="text-2xl sm:text-3xl font-semibold text-gray-700">
             ${product.price}
           </div>
 
-          <div className="text-sm text-gray-600 space-y-1">
+          <div className="text-sm sm:text-base text-gray-600 space-y-1">
             {product.material && (
               <p>
                 <span className="font-semibold">Material:</span>{" "}
@@ -105,30 +120,20 @@ const ProductDetails = () => {
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <button
               onClick={handleAddToCart}
-              className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg shadow"
+              className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg shadow w-full sm:w-auto"
             >
               Add to Cart
             </button>
             <button
               onClick={handleContinueShopping}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow w-full sm:w-auto"
             >
               Continue Shopping
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Optional: Related products */}
-      {/* 
-      <div className="mt-12">
-        <h2 className="text-2xl font-semibold mb-4">You may also like</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          // Insert related product cards here...
-        </div>
-      </div> 
-      */}
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

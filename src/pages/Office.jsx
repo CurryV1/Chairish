@@ -1,17 +1,18 @@
 // src/pages/Office.jsx
 import React, { useState, useEffect } from "react";
 import ProductCard from "../components/ProductCard";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const Office = () => {
-  const [products, setProducts] = useState([]); // All office products
-  const [filteredProducts, setFilteredProducts] = useState([]); // After applying filter
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   // eslint-disable-next-line no-unused-vars
-  const [filterType, setFilterType] = useState("all"); // "all", "price", "color", "material"
+  const [filterType, setFilterType] = useState("all");
   // eslint-disable-next-line no-unused-vars
   const [filterValue, setFilterValue] = useState("");
 
-  // Fetch and filter Office products
   useEffect(() => {
     fetch("/data/products.json")
       .then((res) => res.json())
@@ -30,7 +31,6 @@ const Office = () => {
       });
   }, []);
 
-  // Apply filtering logic
   useEffect(() => {
     let filtered = products;
     if (filterType !== "all" && filterValue !== "") {
@@ -60,22 +60,32 @@ const Office = () => {
   }, [filterType, filterValue, products]);
 
   return (
-    <div className="container mx-auto p-4">
+    <motion.div
+      className="container mx-auto p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <h1 className="text-3xl font-bold mb-4">Office Products</h1>
-      {/* Filter UI remains unchanged */}
 
       {loading ? (
         <p>Loading products...</p>
       ) : filteredProducts.length === 0 ? (
         <p>No products found.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-yellow-500 border-amber-500">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-yellow-500 border-amber-500"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

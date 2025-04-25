@@ -2,6 +2,7 @@
 import React, { Suspense, lazy } from "react";
 import Hero from "../components/Hero";
 import FeaturedBanner from "../components/FeaturedBanner"; // Eager load key content
+import NewsletterSignup from "../components/NewsletterSignup";
 
 const Testimonials = lazy(() => import("../components/Testimonials"));
 const CategoryCards = lazy(() => import("../components/CategoryCards"));
@@ -30,6 +31,7 @@ const Home = () => {
         }
       >
         <CategoryCards />
+        <NewsletterSignup />
       </Suspense>
     </>
   );

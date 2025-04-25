@@ -1,57 +1,54 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// src/pages/AccountInfo.jsx
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AccountInfo = ({ onLogout }) => {
   const navigate = useNavigate();
-  // Get user from localStorage if not passed as prop
-  const [user, setUser] = useState(() => {
-    const userData = localStorage.getItem('user');
-    return userData ? JSON.parse(userData) : null;
+  const [user] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
   });
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     if (onLogout) onLogout();
-    navigate('/account');
+    navigate("/account");
   };
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-          Account Information
-        </h2>
-      </div>
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12">
+      <div className="w-full max-w-md space-y-8">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-gray-900">Welcome back!</h2>
+          <p className="mt-2 text-sm text-gray-600">
+            Here’s your account info.
+          </p>
+        </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <div className="space-y-6">
+        <div className="rounded-md bg-yellow-500 p-6 shadow-md space-y-4">
           <div>
-            <label className="block text-sm/6 font-medium text-gray-900">
+            <label className="block text-sm font-medium text-gray-700">
               Name
             </label>
-            <div className="mt-2">
-              <p className="block w-full px-3 py-1.5 text-gray-900">
-                {user?.name || 'Not available'}
-              </p>
-            </div>
+            <p className="mt-1 text-base text-gray-900">
+              {user?.name || "N/A"}
+            </p>
           </div>
 
           <div>
-            <label className="block text-sm/6 font-medium text-gray-900">
+            <label className="block text-sm font-medium text-gray-700">
               Email
             </label>
-            <div className="mt-2">
-              <p className="block w-full px-3 py-1.5 text-gray-900">
-                {user?.email || 'Not available'}
-              </p>
-            </div>
+            <p className="mt-1 text-base text-gray-900">
+              {user?.email || "N/A"}
+            </p>
           </div>
 
           <div>
             <button
               onClick={handleLogout}
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="mt-6 w-full rounded-md bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-700 focus:outline-none"
             >
               Logout
             </button>

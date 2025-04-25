@@ -14,7 +14,7 @@ const Hero = () => {
   return (
     <div
       className="relative h-screen bg-cover bg-center"
-      style={{ backgroundImage: "url('/images/Hero.jpg')" }}
+      style={{ backgroundImage: "url('/images/webp_images/Hero.webp')" }}
       role="img"
       aria-label="Yellow chair in aesthetic living room"
     >

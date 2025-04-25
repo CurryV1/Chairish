@@ -8,17 +8,17 @@ const categories = [
   {
     name: "Living Room",
     path: "/livingroom",
-    image: "/images/livingroom.jpg",
+    image: "/images/webp_images/livingroom.webp",
   },
   {
     name: "Office",
     path: "/office",
-    image: "/images/office.jpg",
+    image: "/images/webp_images/office.webp",
   },
   {
     name: "Bedroom",
     path: "/bedroom",
-    image: "/images/bedroom.jpg",
+    image: "/images/webp_images/bedroom.webp",
   },
 ];
 

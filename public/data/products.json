@@ -7,7 +7,7 @@
     "color": "light blue",
     "tags": "couch,3 seats,modern",
     "category": "living room",
-    "image_ref": "/images/Claremont.png",
+    "image_ref": "/images/webp_images/Claremont.webp",
     "id": 1
   },
   {
@@ -18,7 +18,7 @@
     "color": "black",
     "tags": "couch, sofa, 2 seats, modern",
     "category": "living room",
-    "image_ref": "/images/Folsom.png",
+    "image_ref": "/images/webp_images/Folsom.webp",
     "id": 2
   },
   {
@@ -29,7 +29,7 @@
     "color": "grey",
     "tags": "couch, neutral, 2 seats",
     "category": "living room",
-    "image_ref": "/images/Hayward.png",
+    "image_ref": "/images/webp_images/Hayward.webp",
     "id": 3
   },
   {
@@ -40,7 +40,7 @@
     "color": "tan",
     "tags": "couch, neutral, 3 seats",
     "category": "living room",
-    "image_ref": "/images/Delcrest.png",
+    "image_ref": "/images/webp_images/Delcrest.webp",
     "id": 4
   },
   {
@@ -51,7 +51,7 @@
     "color": "blue",
     "tags": "couch, dark",
     "category": "living room",
-    "image_ref": "/images/Athens.png",
+    "image_ref": "/images/webp_images/Athens.webp",
     "id": 5
   },
   {
@@ -62,7 +62,7 @@
     "color": "black",
     "tags": "couch, dark, 2 seats",
     "category": "living room",
-    "image_ref": "/images/Altari.png",
+    "image_ref": "/images/webp_images/Altari.webp",
     "id": 6
   },
   {
@@ -73,7 +73,7 @@
     "color": "grey",
     "tags": "couch, neutral, 2 seats",
     "category": "living room",
-    "image_ref": "/images/Mahoney.png",
+    "image_ref": "/images/webp_images/Mahoney.webp",
     "id": 7
   },
   {
@@ -84,7 +84,7 @@
     "color": "grey",
     "tags": "couch, neutral, 3 seats",
     "category": "living room",
-    "image_ref": "/images/Darcy.png",
+    "image_ref": "/images/webp_images/Darcy.webp",
     "id": 8
   },
   {
@@ -95,7 +95,7 @@
     "color": "brown",
     "tags": "couch, rustic, 3 seats",
     "category": "living room",
-    "image_ref": "/images/Bladen.png",
+    "image_ref": "/images/webp_images/Bladen.webp",
     "id": 9
   },
   {
@@ -106,7 +106,7 @@
     "color": "brown",
     "tags": "couch, modern, 2 seats",
     "category": "living room",
-    "image_ref": "/images/Newton.png",
+    "image_ref": "/images/webp_images/Newton.webp",
     "id": 10
   },
   {
@@ -117,7 +117,7 @@
     "color": "white",
     "tags": "chair, office",
     "category": "living room",
-    "image_ref": "/images/Tartonelle.png",
+    "image_ref": "/images/webp_images/Tartonelle.webp",
     "id": 11
   },
   {
@@ -128,7 +128,7 @@
     "color": "brown",
     "tags": "chair, living room",
     "category": "office",
-    "image_ref": "/images/Puckman.png",
+    "image_ref": "/images/webp_images/Puckman.webp",
     "id": 12
   },
   {
@@ -139,7 +139,7 @@
     "color": "white",
     "tags": "chair, office",
     "category": "living room",
-    "image_ref": "/images/Kambria.png",
+    "image_ref": "/images/webp_images/Kambria.webp",
     "id": 13
   },
   {
@@ -150,7 +150,7 @@
     "color": "brown",
     "tags": "chair, living room",
     "category": "office",
-    "image_ref": "/images/Drakelle.png",
+    "image_ref": "/images/webp_images/Drakelle.webp",
     "id": 14
   },
   {
@@ -161,7 +161,7 @@
     "color": "brown",
     "tags": "chair, living room",
     "category": "office",
-    "image_ref": "/images/Sidewinder.png",
+    "image_ref": "/images/webp_images/Sidewinder.webp",
     "id": 15
   },
   {
@@ -172,7 +172,7 @@
     "color": "grey",
     "tags": "chair, living room",
     "category": "office",
-    "image_ref": "/images/Bradney.png",
+    "image_ref": "/images/webp_images/Bradney.webp",
     "id": 16
   },
   {
@@ -183,7 +183,7 @@
     "color": "brown",
     "tags": "chair, living room",
     "category": "office",
-    "image_ref": "/images/Peacemaker.png",
+    "image_ref": "/images/webp_images/Peacemaker.webp",
     "id": 17
   },
   {
@@ -194,7 +194,7 @@
     "color": "white",
     "tags": "chair, office",
     "category": "living room",
-    "image_ref": "/images/Search.png",
+    "image_ref": "/images/webp_images/Search.webp",
     "id": 18
   },
   {
@@ -205,7 +205,7 @@
     "color": "blue",
     "tags": "chair, living room",
     "category": "office",
-    "image_ref": "/images/Iceman.png",
+    "image_ref": "/images/webp_images/Iceman.webp",
     "id": 19
   },
   {
@@ -216,7 +216,7 @@
     "color": "white",
     "tags": "chair, living room",
     "category": "office",
-    "image_ref": "/images/Tilden.png",
+    "image_ref": "/images/webp_images/Tilden.webp",
     "id": 20
   },
   {
@@ -227,7 +227,7 @@
     "color": "white",
     "tags": "pillow",
     "category": "bedroom",
-    "image_ref": "/images/GhostPillow.png",
+    "image_ref": "/images/webp_images/GhostPillow.webp",
     "id": 21
   },
   {
@@ -238,7 +238,7 @@
     "color": "grey",
     "tags": "pillow, cooling",
     "category": "bedroom",
-    "image_ref": "/images/Healthy.png",
+    "image_ref": "/images/webp_images/Healthy.webp",
     "id": 22
   },
   {
@@ -249,7 +249,7 @@
     "color": "white",
     "tags": "bed, mattress",
     "category": "bedroom",
-    "image_ref": "/images/Chime.png",
+    "image_ref": "/images/webp_images/Chime.webp",
     "id": 23
   },
   {
@@ -260,7 +260,7 @@
     "color": "white",
     "tags": "bed, mattress",
     "category": "bedroom",
-    "image_ref": "/images/Chime2.png",
+    "image_ref": "/images/webp_images/Chime2.webp",
     "id": 24
   },
   {
@@ -271,7 +271,7 @@
     "color": "coral",
     "tags": "bed, mattress, kids",
     "category": "bedroom",
-    "image_ref": "/images/iKidz.png",
+    "image_ref": "/images/webp_images/iKidz.webp",
     "id": 25
   },
   {
@@ -282,7 +282,7 @@
     "color": "black",
     "tags": "bed, mattress",
     "category": "bedroom",
-    "image_ref": "/images/Sealy.png",
+    "image_ref": "/images/webp_images/Sealy.webp",
     "id": 26
   },
   {
@@ -293,7 +293,7 @@
     "color": "white",
     "tags": "bed, mattress",
     "category": "bedroom",
-    "image_ref": "/images/Nectar.png",
+    "image_ref": "/images/webp_images/Nectar.webp",
     "id": 27
   },
   {
@@ -304,7 +304,7 @@
     "color": "white",
     "tags": "bed, mattress",
     "category": "bedroom",
-    "image_ref": "/images/Sealy2.png",
+    "image_ref": "/images/webp_images/Sealy2.webp",
     "id": 28
   },
   {
@@ -315,7 +315,7 @@
     "color": "blue",
     "tags": "bed, mattress",
     "category": "bedroom",
-    "image_ref": "/images/Serta.png",
+    "image_ref": "/images/webp_images/Serta.webp",
     "id": 29
   },
   {
@@ -326,7 +326,7 @@
     "color": "white",
     "tags": "bed, mattress",
     "category": "bedroom",
-    "image_ref": "/images/Sealy3.png",
+    "image_ref": "/images/webp_images/Sealy3.webp",
     "id": 30
   },
   {
@@ -337,7 +337,7 @@
     "color": "black",
     "tags": "bed, mattress",
     "category": "bedroom",
-    "image_ref": "/images/Beautyrest.png",
+    "image_ref": "/images/webp_images/Beautyrest.webp",
     "id": 31
   },
   {
@@ -348,7 +348,7 @@
     "color": "white",
     "tags": "bed, mattress",
     "category": "bedroom",
-    "image_ref": "/images/Chime3.png",
+    "image_ref": "/images/webp_images/Chime3.webp",
     "id": 32
   },
   {
@@ -359,7 +359,7 @@
     "color": "white",
     "tags": "bed, matteress",
     "category": "bedroom",
-    "image_ref": "/images/Beautyrest2.png",
+    "image_ref": "/images/webp_images/Beautyrest2.webp",
     "id": 33
   },
   {
@@ -370,7 +370,7 @@
     "color": "white",
     "tags": "bed, mattress",
     "category": "bedroom",
-    "image_ref": "/images/Serta2.png",
+    "image_ref": "/images/webp_images/Serta2.webp",
     "id": 34
   },
   {
@@ -381,7 +381,7 @@
     "color": "brown",
     "tags": "wood",
     "category": "office",
-    "image_ref": "/images/Roanhowe.png",
+    "image_ref": "/images/webp_images/Roanhowe.webp",
     "id": 35
   },
   {
@@ -392,7 +392,7 @@
     "color": "brown",
     "tags": "wood",
     "category": "office",
-    "image_ref": "/images/Montia.png",
+    "image_ref": "/images/webp_images/Montia.webp",
     "id": 36
   },
   {
@@ -403,7 +403,7 @@
     "color": "brown",
     "tags": "wood",
     "category": "office",
-    "image_ref": "/images/Korestone.png",
+    "image_ref": "/images/webp_images/Korestone.webp",
     "id": 37
   },
   {
@@ -414,7 +414,7 @@
     "color": "brown",
     "tags": "wood",
     "category": "office",
-    "image_ref": "/images/Austanny.png",
+    "image_ref": "/images/webp_images/Austanny.webp",
     "id": 38
   },
   {
@@ -425,7 +425,7 @@
     "color": "black",
     "tags": "wood",
     "category": "office",
-    "image_ref": "/images/Rowanbeck.png",
+    "image_ref": "/images/webp_images/Rowanbeck.webp",
     "id": 39
   },
   {
@@ -436,7 +436,7 @@
     "color": "grey",
     "tags": "wood",
     "category": "office",
-    "image_ref": "/images/Shawburn.png",
+    "image_ref": "/images/webp_images/Shawburn.webp",
     "id": 40
   },
   {
@@ -447,7 +447,7 @@
     "color": "brown",
     "tags": "chair, rolling",
     "category": "office",
-    "image_ref": "/images/Austanny2.png",
+    "image_ref": "/images/webp_images/Austanny2.webp",
     "id": 41
   },
   {
@@ -458,7 +458,7 @@
     "color": "white",
     "tags": "chair",
     "category": "office",
-    "image_ref": "/images/Montia2.png",
+    "image_ref": "/images/webp_images/Montia2.webp",
     "id": 42
   },
   {
@@ -469,7 +469,7 @@
     "color": "white",
     "tags": "chair",
     "category": "office",
-    "image_ref": "/images/Korestone2.png",
+    "image_ref": "/images/webp_images/Korestone2.webp",
     "id": 43
   },
   {
@@ -480,7 +480,7 @@
     "color": "black",
     "tags": "chair",
     "category": "office",
-    "image_ref": "/images/Rowanbeck2.png",
+    "image_ref": "/images/webp_images/Rowanbeck2.webp",
     "id": 44
   },
   {
@@ -491,7 +491,7 @@
     "color": "black",
     "tags": "chair, rolling, swivel",
     "category": "office",
-    "image_ref": "/images/Swivel.png",
+    "image_ref": "/images/webp_images/Swivel.webp",
     "id": 45
   },
   {
@@ -502,7 +502,7 @@
     "color": "brown",
     "tags": "chair, rolling",
     "category": "office",
-    "image_ref": "/images/Reed.png",
+    "image_ref": "/images/webp_images/Reed.webp",
     "id": 46
   },
   {
@@ -535,7 +535,7 @@
     "color": "brown",
     "tags": "shelf, metal, black, living room, bedroom",
     "category": "office",
-    "image_ref": "/images/Galtbury.png",
+    "image_ref": "/images/webp_images/Galtbury.webp",
     "id": 49
   },
   {
@@ -546,7 +546,7 @@
     "color": "brown",
     "tags": "shelf, black, metal, living room, bedroom",
     "category": "office",
-    "image_ref": "/images/Frankwell.png",
+    "image_ref": "/images/webp_images/Frankwell.webp",
     "id": 50
   }
 ]

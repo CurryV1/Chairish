@@ -1,16 +1,12 @@
 // src/pages/Bedroom.jsx
 import React, { useState, useEffect } from "react";
 import ProductCard from "../components/ProductCard";
-// eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
 
 const Bedroom = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  // eslint-disable-next-line no-unused-vars
   const [filterType, setFilterType] = useState("all");
-  // eslint-disable-next-line no-unused-vars
   const [filterValue, setFilterValue] = useState("");
 
   useEffect(() => {
@@ -59,33 +55,152 @@ const Bedroom = () => {
     setFilteredProducts(filtered);
   }, [filterType, filterValue, products]);
 
-  return (
-    <motion.div
-      className="container mx-auto p-4"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <h1 className="text-3xl font-bold mb-4">Bedroom Products</h1>
+  const clearFilters = () => {
+    setFilterType("all");
+    setFilterValue("");
+  };
 
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-6">Bedroom Products</h1>
+
+      {/* --- Filter Section --- */}
+      <div className="mb-6">
+        <div className="flex flex-wrap gap-4 mb-4">
+          <button
+            className={`px-4 py-2 rounded ${
+              filterType === "all" ? "bg-yellow-500 text-black" : "bg-gray-300"
+            }`}
+            onClick={clearFilters}
+          >
+            All
+          </button>
+          <button
+            className={`px-4 py-2 rounded ${
+              filterType === "price"
+                ? "bg-yellow-500 text-black"
+                : "bg-gray-300"
+            }`}
+            onClick={() => {
+              setFilterType("price");
+              setFilterValue("");
+            }}
+          >
+            Price
+          </button>
+          <button
+            className={`px-4 py-2 rounded ${
+              filterType === "color"
+                ? "bg-yellow-500 text-black"
+                : "bg-gray-300"
+            }`}
+            onClick={() => {
+              setFilterType("color");
+              setFilterValue("");
+            }}
+          >
+            Color
+          </button>
+          <button
+            className={`px-4 py-2 rounded ${
+              filterType === "material"
+                ? "bg-yellow-500 text-black"
+                : "bg-gray-300"
+            }`}
+            onClick={() => {
+              setFilterType("material");
+              setFilterValue("");
+            }}
+          >
+            Material
+          </button>
+        </div>
+
+        {/* --- Conditional Filter Options --- */}
+        {filterType === "price" && (
+          <div className="flex flex-wrap gap-4">
+            {["low", "mid", "high"].map((price) => (
+              <button
+                key={price}
+                className={`px-3 py-1 rounded capitalize ${
+                  filterValue === price
+                    ? "bg-yellow-500 text-black"
+                    : "bg-gray-200"
+                }`}
+                onClick={() => setFilterValue(price)}
+              >
+                {price === "low"
+                  ? "Low (< $200)"
+                  : price === "mid"
+                  ? "Mid ($200-$399)"
+                  : "High ($400+)"}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {filterType === "color" && (
+          <div className="flex flex-wrap gap-4">
+            {["black", "white", "grey", "brown", "tan", "blue"].map((color) => (
+              <button
+                key={color}
+                className={`px-3 py-1 rounded capitalize ${
+                  filterValue === color
+                    ? "bg-yellow-500 text-black"
+                    : "bg-gray-200"
+                }`}
+                onClick={() => setFilterValue(color)}
+              >
+                {color}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {filterType === "material" && (
+          <div className="flex flex-wrap gap-4">
+            {["leather", "linen", "microfiber"].map((material) => (
+              <button
+                key={material}
+                className={`px-3 py-1 rounded capitalize ${
+                  filterValue === material
+                    ? "bg-yellow-500 text-black"
+                    : "bg-gray-200"
+                }`}
+                onClick={() => setFilterValue(material)}
+              >
+                {material}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* --- Clear Filters Button --- */}
+        {(filterType !== "all" || filterValue !== "") && (
+          <div className="mt-4">
+            <button
+              onClick={clearFilters}
+              className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded"
+            >
+              Clear Filters
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* --- Products Grid --- */}
       {loading ? (
         <p>Loading products...</p>
       ) : filteredProducts.length === 0 ? (
         <p>No products found.</p>
       ) : (
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-yellow-500 border-amber-500"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-yellow-500 p-4 rounded">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </motion.div>
+        </div>
       )}
-    </motion.div>
+    </div>
   );
 };
 

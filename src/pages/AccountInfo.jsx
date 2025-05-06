@@ -1,4 +1,3 @@
-// src/pages/AccountInfo.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -12,20 +11,7 @@ const AccountInfo = () => {
     navigate("/account");
   };
 
-  const mockOrders = [
-    {
-      id: "A1234",
-      date: "2025-04-22",
-      items: ["Darcy Sofa", "Roanhowe Desk Chair"],
-      total: "$659.98",
-    },
-    {
-      id: "B5678",
-      date: "2025-04-20",
-      items: ["Chime Mattress"],
-      total: "$189.99",
-    },
-  ];
+  const orderHistory = user?.orderHistory || [];
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-yellow-500 px-4 py-12">
@@ -59,17 +45,18 @@ const AccountInfo = () => {
           <h3 className="text-lg font-semibold text-gray-800 mt-6 mb-2">
             Purchase History
           </h3>
-          {mockOrders.length === 0 ? (
+          {orderHistory.length === 0 ? (
             <p className="text-gray-500 text-sm">No orders found.</p>
           ) : (
             <ul className="divide-y divide-gray-200">
-              {mockOrders.map((order) => (
-                <li key={order.id} className="py-2">
+              {orderHistory.map((order, index) => (
+                <li key={index} className="py-2">
                   <div className="text-sm font-medium text-gray-700">
-                    Order #{order.id} • {order.date}
+                    Order #{order.orderId} • {order.date}
                   </div>
                   <div className="text-sm text-gray-600">
-                    Items: {order.items.join(", ")} — Total: {order.total}
+                    Items: {order.cartItems.map((item) => item.name).join(", ")}{" "}
+                    — Total: ${order.subTotal.toFixed(2)}
                   </div>
                 </li>
               ))}

@@ -1,4 +1,3 @@
-// src/context/AuthContext.jsx
 // eslint-disable-next-line no-unused-vars
 import React, { createContext, useContext, useEffect, useState } from "react";
 
@@ -10,6 +9,8 @@ export const AuthProvider = ({ children }) => {
     return stored ? JSON.parse(stored) : null;
   });
 
+  const [orderHistory, setOrderHistory] = useState([]); // New state for orders
+
   const login = (email, name = "") => {
     const newUser = { email, name };
     localStorage.setItem("mock_user", JSON.stringify(newUser));
@@ -17,17 +18,31 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = (email, name) => {
-    // For mock purposes, registration is the same as login
     login(email, name);
   };
 
   const logout = () => {
     localStorage.removeItem("mock_user");
     setUser(null);
+    setOrderHistory([]); // Clear session-based history on logout
+  };
+
+  // New method: Add order to session-based history
+  const addOrderToHistory = (order) => {
+    setOrderHistory((prev) => [...prev, order]);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, register }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        logout,
+        register,
+        orderHistory,
+        addOrderToHistory,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

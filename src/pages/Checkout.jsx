@@ -59,14 +59,12 @@ const Checkout = () => {
         const value = val.trim();
         if (!value) return false;
 
-        // Require at least one letter for these fields
         if (
           ["firstName", "lastName", "city", "state", "street1"].includes(key)
         ) {
           return /[a-zA-Z]/.test(value);
         }
 
-        // ZIP code must be 5 digits
         if (key === "zip") {
           return /^\d{5}$/.test(value);
         }
@@ -104,7 +102,20 @@ const Checkout = () => {
         date: new Date().toLocaleString(),
         orderId: Math.random().toString(36).substr(2, 9).toUpperCase(),
       };
+
+      // Store order in localStorage
       localStorage.setItem("recentOrder", JSON.stringify(order));
+
+      // Append order to mock_user's order history
+      const storedUser = JSON.parse(localStorage.getItem("mock_user"));
+      if (storedUser) {
+        const updatedUser = {
+          ...storedUser,
+          orderHistory: [...(storedUser.orderHistory || []), order],
+        };
+        localStorage.setItem("mock_user", JSON.stringify(updatedUser));
+      }
+
       clearCart();
       setProcessing(false);
       navigate("/confirmation");
@@ -138,17 +149,15 @@ const Checkout = () => {
                 />
                 Same as Mailing Address
               </label>
-              {
-                <div
-                  className={`transition-all duration-500 overflow-hidden ${
-                    sameAsMailing
-                      ? "max-h-0 opacity-0"
-                      : "max-h-[1000px] opacity-100"
-                  }`}
-                >
-                  <AddressForm addForm={billForm} setAddForm={setBillForm} />
-                </div>
-              }
+              <div
+                className={`transition-all duration-500 overflow-hidden ${
+                  sameAsMailing
+                    ? "max-h-0 opacity-0"
+                    : "max-h-[1000px] opacity-100"
+                }`}
+              >
+                <AddressForm addForm={billForm} setAddForm={setBillForm} />
+              </div>
             </div>
             <div className="bg-white rounded-md border border-gray-200 shadow-lg p-4">
               <h3 className="text-2xl font-bold mb-2">Payment Method</h3>

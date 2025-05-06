@@ -1,6 +1,6 @@
 // src/pages/Account.jsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Account = () => {
@@ -22,10 +22,22 @@ const Account = () => {
 
     setLoading(true);
     try {
+      const existingUsers = JSON.parse(
+        localStorage.getItem("mockUsers") || "[]"
+      );
+      const user = existingUsers.find((u) => u.email === email.trim());
+
+      if (!user) {
+        setError("Account not found. Please register first.");
+        setLoading(false);
+        return;
+      }
+
+      // Optional: password check if we choose to store it later
       login(email.trim());
       navigate("/accountInfo");
-      // eslint-disable-next-line no-unused-vars
     } catch (err) {
+      console.error(err);
       setError("Failed to sign in.");
     } finally {
       setLoading(false);
@@ -91,12 +103,12 @@ const Account = () => {
 
         <p className="mt-6 text-center text-sm text-gray-500">
           Don’t have an account?{" "}
-          <a
-            href="/register"
+          <Link
+            to="/register"
             className="font-medium text-indigo-600 hover:text-indigo-500"
           >
             Register now
-          </a>
+          </Link>
         </p>
       </div>
     </div>

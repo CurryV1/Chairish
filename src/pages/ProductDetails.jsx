@@ -1,4 +1,3 @@
-// src/pages/ProductDetails.jsx
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
@@ -13,6 +12,7 @@ const ProductDetails = () => {
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
     fetch("/data/products.json")
@@ -29,7 +29,11 @@ const ProductDetails = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-    if (product) addToCart(product);
+    if (product) {
+      addToCart(product);
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 1500);
+    }
   };
 
   const handleContinueShopping = () => {
@@ -52,11 +56,18 @@ const ProductDetails = () => {
 
   return (
     <motion.div
-      className="container mx-auto px-4 py-8 sm:px-6 lg:px-8"
+      className="container mx-auto px-4 py-8 sm:px-6 lg:px-8 relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
     >
+      {/* Toast */}
+      {showToast && (
+        <div className="absolute bottom-6 right-6 bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded shadow animate-fadeInOut z-20">
+          Added to Cart
+        </div>
+      )}
+
       <motion.div
         className="flex flex-col lg:flex-row gap-8"
         initial={{ y: 20, opacity: 0 }}

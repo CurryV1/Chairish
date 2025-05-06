@@ -54,15 +54,33 @@ const Checkout = () => {
 
   useEffect(() => {
     const validate = (obj, skip = []) => {
-      return Object.entries(obj).every(
-        ([key, val]) => skip.includes(key) || val.trim() !== ""
-      );
+      return Object.entries(obj).every(([key, val]) => {
+        if (skip.includes(key)) return true;
+        const value = val.trim();
+        if (!value) return false;
+
+        // Require at least one letter for these fields
+        if (
+          ["firstName", "lastName", "city", "state", "street1"].includes(key)
+        ) {
+          return /[a-zA-Z]/.test(value);
+        }
+
+        // ZIP code must be 5 digits
+        if (key === "zip") {
+          return /^\d{5}$/.test(value);
+        }
+
+        return true;
+      });
     };
+
     const isValid =
       cartItems.length > 0 &&
       validate(mailForm, ["street2", "apt"]) &&
       validate(billForm, ["street2", "apt"]) &&
       validate(paymentForm);
+
     setFormValid(isValid);
   }, [mailForm, billForm, paymentForm, cartItems]);
 

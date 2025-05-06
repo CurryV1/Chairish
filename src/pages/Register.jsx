@@ -23,6 +23,9 @@ const Register = () => {
     if (password.length < 6) {
       return "Password must be at least 6 characters.";
     }
+    if (!/[a-zA-Z]/.test(name.trim())) {
+      return "Name must include letters.";
+    }
     return null;
   };
 
@@ -40,7 +43,7 @@ const Register = () => {
     setLoading(true);
     try {
       register(email.trim(), name.trim());
-      setSuccessMessage("Registration successful! Redirecting to dashboard...");
+      setSuccessMessage("Registration successful! Redirecting to home...");
       setTimeout(() => navigate("/"), 1500);
       // eslint-disable-next-line no-unused-vars
     } catch (err) {

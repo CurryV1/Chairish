@@ -342,7 +342,9 @@ const Navbar = () => {
           <Link
             to="/cart"
             className="relative text-black text-lg"
-            aria-label="Shopping cart"
+            aria-label={`Cart with ${totalQuantity} item${
+              totalQuantity === 1 ? "" : "s"
+            }`}
           >
             <FaShoppingCart size={24} />
             {totalQuantity > 0 && (
